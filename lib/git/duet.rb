@@ -1,7 +1,3 @@
-require "git/duet/version"
-
-module Git
-  module Duet
-    # Your code goes here...
-  end
+Dir[File.dirname(__FILE__) + '/duet/**/*.rb'].each do |f|
+  require f
 end

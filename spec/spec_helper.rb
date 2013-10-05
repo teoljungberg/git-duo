@@ -7,3 +7,9 @@ RSpec.configure do |config|
   config.order = 'random'
 end
 
+def author
+  OpenStruct.new key: 'teo',
+    name: 'Teo Ljungberg',
+    email: 'teo@mynewsdesk.com',
+    full: 'Teo Ljungberg <teo@mynewsdesk.com>'
+end
