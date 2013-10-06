@@ -10,6 +10,11 @@ module Git
           "#{user_name} <#{user_email}>"
         end
 
+        def unpair!
+          config '--remove-section user'
+          current_committer
+        end
+
         def email_format
           config 'git-duet.email-format'
         end
