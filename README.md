@@ -20,11 +20,8 @@ Or install it yourself as:
 ## Usage
 
 ```bash
-$ git duet teo billskog
-> Duet email: dev@mynewsdesk.com
-> Name for `teo`: Teo Ljungberg
-> Name for `billskog`: `David Billskog`
-David Billskog and Teo Ljungberg <dev+billskog+teo@mynewsdesk.com>
+$ git duet -add "teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>"
+$ git duet -add "billskog David Billskog <david.billskog@mynewsdesk.com>"
 ```
 
 ```bash
@@ -33,7 +30,7 @@ David Billskog and Teo Ljungberg <dev+billskog+teo@mynewsdesk.com>
 ```
 
 ```bash
-$ git duet --duet-email=product@mynewsdesk.com
+$ git duet --email product@mynewsdesk.com
 David Billskog and Teo Ljungberg <product+billskog+teo@mynewsdesk.com>
 ```
 
