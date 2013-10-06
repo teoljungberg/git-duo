@@ -13,8 +13,9 @@ module Git
             Wrapper.author = key, author
           end
 
-          opts.on '--email EMAIL', 'Set email format. Format: dev@example.com' do |email|
-            Wrapper.email_format = email
+          opts.on '--email EMAIL', 'Set email format. Format: dev@example.com' do |email_format|
+            Wrapper.email = email_format
+          end
           end
 
           opts.on '-h', 'Show this message' do

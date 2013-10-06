@@ -23,7 +23,7 @@ module Git
       end
 
       def pair_email
-        format = Wrapper.email_format
+        format = Wrapper.email
         format.split("@").
           insert(1, ?+).
           insert(2, authors.map(&:key).sort.join("+"), ?@).

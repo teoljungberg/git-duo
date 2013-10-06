@@ -2,12 +2,14 @@ module Git
   module Duet
     class Wrapper
       class << self
-        def author key
-          config "git-duet.#{key}"
+        %w(user_email user_name).each do |method|
+          define_method(method) { config "#{method.gsub(?_, ?.)}" }
+          define_method(method + ?=) { |new_value| config "#{method.gsub(?_, ?.)} '#{new_value}'" }
         end
 
-        def author= args
-          config "git-duet.#{args.first} '#{args.last}'"
+        %w(email).each do |method|
+          define_method(method) { config "git-duet.#{method}" }
+          define_method(method + ?=) { |new_value| config "git-duet.#{method} '#{new_value}'" }
         end
 
         def current_committer
@@ -19,28 +21,12 @@ module Git
           current_committer
         end
 
-        def email_format
-          config 'git-duet.email-format'
+        def author key
+          config "git-duet.#{key}"
         end
 
-        def email_format= format
-          config "git-duet.email-format '#{format}'"
-        end
-
-        def user_email
-          config "user.email"
-        end
-
-        def user_email= email
-          config "user.email '#{email}'"
-        end
-
-        def user_name
-          config "user.name"
-        end
-
-        def user_name= name
-          config "user.name '#{name}'"
+        def author= args
+          config "git-duet.#{args.first} '#{args.last}'"
         end
 
         private
