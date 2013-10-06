@@ -2,10 +2,12 @@
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
 require 'git/duet'
 
-if ARGV.empty?
-authors = ARGV.sort.map do |key|
-  author = Git::Duet::Wrapper.author(key)
-  Git::Duet::Author.new(author, key)
+unless ARGV.empty?
+  authors = ARGV.sort.map do |key|
+    author = Git::Duet::Wrapper.author(key)
+    Git::Duet::Author.new(author, key)
+  end
+  Git::Duet::Pair.new(authors).set
 end
 
-puts Git::Duet::Pair.new(authors).set
+puts Git::Duet::Wrapper.current_committer
