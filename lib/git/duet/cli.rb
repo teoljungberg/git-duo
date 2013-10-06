@@ -28,11 +28,11 @@ module Git
 
         unless ARGV.empty?
           authors = ARGV.sort.map do |key|
-            author = Git::Duet::Wrapper.author(key)
+            author = Wrapper.author(key)
             abort("`#{key}` can't be found, see --help on how to add new authors") if author.empty?
-            Git::Duet::Author.new(author, key)
+            Author.new(author, key)
           end
-          Git::Duet::Pair.new(authors).set
+          Pair.new(authors).set
         end
 
         puts Wrapper.current_committer
