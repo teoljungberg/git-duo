@@ -12,6 +12,10 @@ module Git
           define_method(method + ?=) { |new_value| config "git-duet.#{method} '#{new_value}'" }
         end
 
+        def repo git_repo, cmd
+          command "--git-dir=#{git_repo}", cmd
+        end
+
         def current_committer
           "#{user_name} <#{user_email}>"
         end
@@ -26,10 +30,17 @@ module Git
         end
 
         def author= args
-          config "git-duet.#{args.first} '#{args.last}'"
+          author = args.first
+          key = args.last
+
+          config "git-duet.#{key} '#{author}'"
         end
 
         private
+
+        def command *args
+          `git #{args.join(' ')}`.strip
+        end
 
         def config arg
           `git config #{arg}`.strip
