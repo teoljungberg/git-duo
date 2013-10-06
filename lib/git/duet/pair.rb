@@ -16,22 +16,22 @@ module Git
       private
       attr_reader :authors
 
-      def pair_names
-        self.name ||= authors.
+      def pair_name
+        authors.
           map(&:name).
           join ' and '
       end
 
       def pair_email
         format = Wrapper.email_format
-        self.email ||= format.split("@").
+        format.split("@").
           insert(1, ?+).
           insert(2, authors.map(&:key).sort.join("+"), ?@).
           join
       end
 
       def set_pair_name
-        Wrapper.user_name = pair_names
+        Wrapper.user_name = pair_name
       end
 
       def set_pair_email
@@ -39,7 +39,7 @@ module Git
       end
 
       def display_committer
-        "#{name} <#{email}>"
+        "#{pair_name} <#{pair_email}>"
       end
     end
   end

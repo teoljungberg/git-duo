@@ -24,13 +24,21 @@ end
 
 def authors
   [
-    OpenStruct.new(key: 'teo',
-                   name: 'Teo Ljungberg',
-                   email: 'teo@mynewsdesk.com',
-                   full: 'Teo Ljungberg <teo@mynewsdesk.com>'),
     OpenStruct.new(key: 'billskog',
                    name: 'David Billskog',
                    email: 'david.billskog@mynewsdesk.com',
-                   full: 'David Billskog <david.billskog@mynewsdesk.com>')
+                   full: 'David Billskog <david.billskog@mynewsdesk.com>'),
+    OpenStruct.new(key: 'teo',
+                   name: 'Teo Ljungberg',
+                   email: 'teo@mynewsdesk.com',
+                   full: 'Teo Ljungberg <teo@mynewsdesk.com>')
   ]
+end
+
+def pair_name
+  'David Billskog and Teo Ljungberg'
+end
+
+def pair_email
+  'dev+billskog+teo@mynewsdesk.com'
 end
