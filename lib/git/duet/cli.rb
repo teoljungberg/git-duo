@@ -21,7 +21,9 @@ module Git
             puts opts
             exit
           end
-        end.parse!
+        end
+
+        parser.parse!
 
         unless ARGV.empty?
           authors = ARGV.sort.map do |key|
@@ -33,6 +35,9 @@ module Git
         end
 
         puts Wrapper.current_committer
+
+      rescue OptionParser::MissingArgument
+        abort "missing required argument\n\n #{parser.help}"
       end
     end
   end
