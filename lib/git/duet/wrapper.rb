@@ -6,6 +6,10 @@ module Git
           config "git-duet.#{key}"
         end
 
+        def author= args
+          config "git-duet.#{args.first} '#{args.last}'"
+        end
+
         def current_committer
           "#{user_name} <#{user_email}>"
         end
