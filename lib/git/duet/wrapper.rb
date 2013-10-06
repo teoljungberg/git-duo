@@ -2,6 +2,14 @@ module Git
   module Duet
     class Wrapper
       class << self
+        def author key
+          config "git-duet.#{key}"
+        end
+
+        def current_committer
+          "#{user_name} <#{user_email}>"
+        end
+
         def email_format
           config 'git-duet.email-format'
         end
