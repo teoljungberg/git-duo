@@ -23,14 +23,7 @@ module Git
           opts.on '--import=PATH/TO/REPO', 'Import pairs from another repo' do |repo|
             git_repo = File.join(File.expand_path(repo), '.git')
             config = Wrapper.repo(git_repo, COMMAND).split("\n")
-            raw_authors = reject_non_authors config
-            authors = extract_authors_from_config raw_authors
-            raw_authors.each do |author|
-              string = author.split ' '
-              key = string.shift
-              author = string.join ' '
-              Wrapper.author = author, key
-            end
+            import_authors(config)
           end
 
           opts.on '-h', 'Show this message' do
@@ -58,8 +51,20 @@ module Git
 
       private
 
+      def self.import_authors config
+        raw_authors = reject_non_authors config
+        authors = extract_authors_from_config raw_authors
+
+        authors.each do |author|
+          string = author.split ' '
+          key = string.shift
+          author = string.join ' '
+          Wrapper.author = author, key
+        end
+      end
+
       def self.reject_non_authors config
-        config.reject! {|conf| conf.match NON_AUTHOR_REGEXP }
+        config.reject {|conf| conf.match NON_AUTHOR_REGEXP }
       end
 
       def self.extract_authors_from_config config
