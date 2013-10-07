@@ -29,11 +29,8 @@ module Git
           config "git-duet.#{key}"
         end
 
-        def author= args
-          author = args.shift
-          key = args.shift
-
-          config "git-duet.#{key} '#{author}'"
+        def author= new_author
+          config "git-duet.#{new_author.key} '#{new_author.full}'"
         end
 
         private

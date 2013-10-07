@@ -22,11 +22,9 @@ module Git
       attr_reader :config
 
       def import_authors
-        extracted_authors.each do |author_string|
-          string = author_string.split ' '
-          key = string.shift
-          author = string.join ' '
-          Wrapper.author = author, key
+        extracted_authors.each do |string|
+          author = Author.import string
+          Wrapper.author = author
         end
       end
 

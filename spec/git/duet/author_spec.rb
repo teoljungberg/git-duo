@@ -4,6 +4,16 @@ require 'git/duet/author'
 describe Git::Duet::Author do
   subject { described_class.new %q(Teo Ljungberg <teo.ljungberg@mynewsdesk.com>), 'teo' }
 
+  describe '.import' do
+    subject { described_class.import 'teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>' }
+
+    it 'creates an author from the raw input' do
+      expect(subject.key).to eq 'teo'
+      expect(subject.name).to eq 'Teo Ljungberg'
+      expect(subject.email).to eq 'teo.ljungberg@mynewsdesk.com'
+    end
+  end
+
   describe '#name' do
     it 'extracts name' do
       expect(subject.name).to eq 'Teo Ljungberg'

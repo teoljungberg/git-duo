@@ -8,10 +8,10 @@ module Git
 
       def self.start
         parser = OptionParser.new do |opts|
-          opts.on '--add AUTHOR', 'Add an author. Format: "Author Name <author@example.com>"' do |author|
-            key = author.split.shift
-            author = author.join ' '
-            Wrapper.author = author, key
+          opts.on '--add AUTHOR', 'Add an author. Format: "Key Author Name <author@example.com>"' do |string|
+            author = Author.import string
+            binding.pry
+            Wrapper.author = author
           end
 
           opts.on '--email EMAIL', 'Set email format. Format: dev@example.com' do |email_format|
