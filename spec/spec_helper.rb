@@ -22,6 +22,14 @@ def author
     full: 'Teo Ljungberg <teo@mynewsdesk.com>'
 end
 
+def config
+  [
+    'git-duet.email dev@mynewsdesk.com',
+    'git-duet.teo Teo Ljungberg <teo@mynewsdesk.com>',
+    'git-duet.billskog David Billskog <david.billskog@mynewsdesk.com>'
+  ]
+end
+
 def authors
   [
     OpenStruct.new(key: 'billskog',

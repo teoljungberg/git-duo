@@ -1,0 +1,44 @@
+require 'git/duet/import'
+require 'git/duet/wrapper'
+
+module Git
+  module Duet
+    class Import
+      NON_AUTHOR_REGEXP = /git-duet\.email/
+
+      def initialize config
+        @config = config
+      end
+
+      def email_pattern
+        import_email_pattern
+      end
+
+      def authors
+        import_authors
+      end
+
+      private
+      attr_reader :config
+
+      def import_authors
+        extracted_authors.each do |author_string|
+          string = author_string.split ' '
+          key = string.shift
+          author = string.join ' '
+          Wrapper.author = author, key
+        end
+      end
+
+      def import_email_pattern
+        email = config.select {|conf| conf.match NON_AUTHOR_REGEXP }.first.split.pop
+        Wrapper.email = email
+      end
+
+      def extracted_authors
+        config.reject {|conf| conf.match NON_AUTHOR_REGEXP }.
+          map {|author| author.split('git-duet.')[1..-1].first }
+      end
+    end
+  end
+end
