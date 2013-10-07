@@ -23,6 +23,7 @@ module Git
           opts.on '--import=PATH/TO/REPO', 'Import pairs from another repo' do |repo|
             git_repo = File.join(File.expand_path(repo), '.git')
             config = Wrapper.repo(git_repo, COMMAND).split("\n")
+            import_email_pattern(config)
             import_authors(config)
           end
 
@@ -61,6 +62,11 @@ module Git
           author = string.join ' '
           Wrapper.author = author, key
         end
+      end
+
+      def self.import_email_pattern config
+        email = config.select {|conf| conf.match NON_AUTHOR_REGEXP }.first.split.pop
+        Wrapper.email = email
       end
 
       def self.reject_non_authors config
