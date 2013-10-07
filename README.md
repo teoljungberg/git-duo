@@ -35,6 +35,14 @@ David Billskog and Teo Ljungberg <product+billskog+teo@mynewsdesk.com>
 ```
 
 ```bash
+$ cd ../new-project
+$ git duet --import ../mynewsdesk
+# this will import the authors and email from the `mynewsdesk` project
+# into `new-project`
+Teo Ljungberg <teo.ljungberg@gmail.com>
+```
+
+```bash
 $ git solo
 Teo Ljungberg <teo.ljungberg@gmail.com>
 ```
