@@ -31,13 +31,13 @@ module Git
       end
 
       def import_email_pattern
-        email = config.select {|conf| conf.match NON_AUTHOR_REGEXP }.first.split.pop
+        email = config.select {|conf| conf.match NON_AUTHOR_REGEXP }.pop.split.pop
         Wrapper.email = email
       end
 
       def extracted_authors
         config.reject {|conf| conf.match NON_AUTHOR_REGEXP }.
-          map {|author| author.split('git-duet.')[1..-1].first }
+          map {|author| author.split('git-duet.')[1..-1].shift }
       end
     end
   end

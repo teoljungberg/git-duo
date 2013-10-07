@@ -30,8 +30,8 @@ module Git
         end
 
         def author= args
-          author = args.first
-          key = args.last
+          author = args.shift
+          key = args.shift
 
           config "git-duet.#{key} '#{author}'"
         end

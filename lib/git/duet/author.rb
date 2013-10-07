@@ -15,7 +15,7 @@ module Git
       end
 
       def email
-        full.scan(EMAIL_REGEXP).first
+        full.scan(EMAIL_REGEXP).shift
       end
     end
   end
