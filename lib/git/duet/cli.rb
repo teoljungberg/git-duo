@@ -1,6 +1,5 @@
 require 'git/duet'
 require 'optparse'
-require 'pry'
 
 module Git
   module Duet
