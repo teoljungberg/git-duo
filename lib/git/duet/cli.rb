@@ -4,13 +4,10 @@ require 'optparse'
 module Git
   module Duet
     class Cli
-      COMMAND = 'config --get-regexp git-duet'
-
       def self.start
         parser = OptionParser.new do |opts|
           opts.on '--add AUTHOR', 'Add an author. Format: "Key Author Name <author@example.com>"' do |string|
             author = Author.import string
-            binding.pry
             Wrapper.author = author
           end
 
@@ -19,9 +16,10 @@ module Git
           end
 
           opts.on '--import=PATH/TO/REPO', 'Import pairs from another repo' do |repo|
-            git_repo = File.join(File.expand_path(repo), '.git')
-            config = Wrapper.repo(git_repo, COMMAND).split("\n")
-            Import.new(config).perform
+            import_repo = Repo.new(repo)
+            current_repo = Repo.new(Dir.pwd)
+            current_repo.email = import_repo.email
+            current_repo.authors = import_repo.authors
           end
 
           opts.on '-h', 'Show this message' do
