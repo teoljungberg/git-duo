@@ -5,7 +5,7 @@ describe Git::Duet::Pair do
   subject { described_class.new authors }
 
   describe '#set' do
-    it 'sets up the pair names' do
+    it 'sets up the pair name and email' do
       expect(subject).to receive(:set_pair_name) { pair_name }
       expect(subject).to receive(:set_pair_email) { pair_email }
 
