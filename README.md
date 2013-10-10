@@ -20,8 +20,8 @@ Or install it yourself as:
 ## Usage
 
 ```bash
-$ git duet -add "teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>"
-$ git duet -add "billskog David Billskog <david.billskog@mynewsdesk.com>"
+$ git duet --add "teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>"
+$ git duet --add "billskog David Billskog <david.billskog@mynewsdesk.com>"
 ```
 
 ```bash
