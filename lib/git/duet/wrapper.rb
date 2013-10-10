@@ -31,10 +31,6 @@ module Git
 
         private
 
-        def command *args
-          `git #{args.join(' ')}`.strip
-        end
-
         def config arg
           `git config #{arg}`.strip
         end

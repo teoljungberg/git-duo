@@ -8,11 +8,11 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.order = 'random'
 
+  config.before { Git::Duet::Wrapper.stub(:config) }
   config.before { Git::Duet::Wrapper.stub(:email) { 'dev@mynewsdesk.com' } }
-  config.before { Git::Duet::Wrapper.stub(:set_email) { author.email } }
-  config.before { Git::Duet::Wrapper.stub(:email_name) { author.name } }
-  config.before { Git::Duet::Wrapper.stub(:set_email=) { author.email } }
-  config.before { Git::Duet::Wrapper.stub(:email_name=) { author.name } }
+  config.before { Git::Duet::Wrapper.stub(:user_email) { author.email } }
+  config.before { Git::Duet::Wrapper.stub(:user_name) { author.name } }
+  config.before { Git::Duet::Wrapper.stub(:author) { author } }
 end
 
 def author
