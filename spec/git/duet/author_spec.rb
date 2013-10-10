@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'git/duet/author'
 
 describe Git::Duet::Author do
-  subject { described_class.new %q(Teo Ljungberg <teo.ljungberg@mynewsdesk.com>), 'teo' }
+  subject { described_class.new 'Teo Ljungberg <teo.ljungberg@mynewsdesk.com>', 'teo' }
 
   describe '.import' do
     subject { described_class.import 'teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>' }
