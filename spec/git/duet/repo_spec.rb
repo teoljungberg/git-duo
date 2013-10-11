@@ -1,6 +1,5 @@
 require 'git/duet/repo'
 require 'git/duet/author'
-require 'git/duet/wrapper'
 require 'spec_helper'
 
 describe Git::Duet::Repo do
@@ -14,7 +13,7 @@ describe Git::Duet::Repo do
 
   describe '#authors' do
     it 'filters the authors from the rest of the config' do
-      expect(subject).to receive(:config) { config }
+      subject.stub(:raw_duet_config) { config }
       expect(subject).to receive(:filter_authors).with(config) { config_authors }
       subject.authors
     end
@@ -24,7 +23,7 @@ describe Git::Duet::Repo do
     let(:sample_author) { config_authors.sample }
 
     it 'sets the authors' do
-      expect(Git::Duet::Wrapper).to receive(:author=).exactly(config_authors.size).times
+      expect(subject).to receive(:author=).exactly(config_authors.size).times
       expect(Git::Duet::Author).to receive(:import).exactly(config_authors.size).times
       subject.authors = config_authors
     end
@@ -32,17 +31,16 @@ describe Git::Duet::Repo do
 
   describe '#email' do
     it 'filters the email from the rest of the config' do
-      expect(subject).to receive(:config) { config }
+      subject.stub(:raw_duet_config) { config }
       expect(subject).to receive(:filter_email).with(config) { config_email }
       subject.email
     end
   end
 
   describe '#email=' do
-    let(:sample_email) { config_email.sample }
-
     it 'sets the authors' do
-      expect(Git::Duet::Wrapper).to receive(:email=).exactly(config_email.size).times
+      expect(subject).to receive(:group_email=)
+
       subject.email = config_email
     end
   end

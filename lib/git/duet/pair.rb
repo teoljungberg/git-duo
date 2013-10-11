@@ -1,4 +1,4 @@
-require 'git/duet/wrapper'
+require 'git/duet/repo'
 
 module Git
   module Duet
@@ -23,23 +23,24 @@ module Git
       end
 
       def pair_email
-        format = Wrapper.email
-        format.split("@").
+        format = repo.email
+        format.split(' ').pop.
+          split("@").
           insert(1, ?+).
           insert(2, authors.map(&:key).sort.join("+"), ?@).
           join
       end
 
-      def set_pair_name
-        Wrapper.user_name = pair_name
-      end
-
-      def set_pair_email
-        Wrapper.user_email = pair_email
+      %w(name email).each do |method|
+        define_method("set_pair_#{method}") { eval "repo.user_#{method} = pair_#{method}" }
       end
 
       def display_committer
         "#{pair_name} <#{pair_email}>"
+      end
+
+      def repo
+        @_repo = Repo.new Dir.pwd
       end
     end
   end

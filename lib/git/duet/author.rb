@@ -22,6 +22,10 @@ module Git
       def email
         full.scan(EMAIL_REGEXP).shift
       end
+
+      def to_s
+        "#{name} <#{email}>"
+      end
     end
   end
 end

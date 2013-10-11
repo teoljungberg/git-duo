@@ -8,16 +8,15 @@ module Git
         parser = OptionParser.new do |opts|
           opts.on '--add AUTHOR', 'Add an author. Format: "Key Author Name <author@example.com>"' do |string|
             author = Author.import string
-            Wrapper.author = author
+            current_repo.author = author
           end
 
           opts.on '--email EMAIL', 'Set email format. Format: dev@example.com' do |email_format|
-            Wrapper.email = email_format
+            current_repo.email = email_format
           end
 
           opts.on '--import=PATH/TO/REPO', 'Import pairs from another repo' do |repo|
             import_repo = Repo.new(repo)
-            current_repo = Repo.new(Dir.pwd)
             current_repo.email = import_repo.email
             current_repo.authors = import_repo.authors
           end
@@ -32,17 +31,23 @@ module Git
 
         unless ARGV.empty?
           authors = ARGV.sort.map do |key|
-            author = Wrapper.author(key)
+            author = current_repo.author(key)
             abort("`#{key}` can't be found, see --help on how to add new authors") if author.empty?
             Author.new(author, key)
           end
           Pair.new(authors).set
         end
 
-        puts Wrapper.current_committer
+        puts current_repo.current_committer
 
       rescue OptionParser::MissingArgument
         abort "missing required argument\n\n #{parser.help}"
+      end
+
+      private
+
+      def self.current_repo
+        @_current_repo ||= Repo.new(Dir.pwd)
       end
     end
   end

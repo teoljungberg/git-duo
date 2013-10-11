@@ -1,4 +1,5 @@
 require 'git/duet/pair'
+require 'git/duet/repo'
 require 'spec_helper'
 
 describe Git::Duet::Pair do
@@ -6,6 +7,7 @@ describe Git::Duet::Pair do
 
   describe '#set' do
     it 'sets up the pair name and email' do
+      Git::Duet::Repo.any_instance.stub(:email) { 'dev@mynewsdesk.com' }
       expect(subject).to receive(:set_pair_name) { pair_name }
       expect(subject).to receive(:set_pair_email) { pair_email }
 

@@ -1,4 +1,4 @@
-require 'git/duet/wrapper'
+require 'git/duet/repo'
 require 'ostruct'
 require 'pry'
 
@@ -8,11 +8,8 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.order = 'random'
 
-  config.before { Git::Duet::Wrapper.stub(:config) }
-  config.before { Git::Duet::Wrapper.stub(:email) { 'dev@mynewsdesk.com' } }
-  config.before { Git::Duet::Wrapper.stub(:user_email) { author.email } }
-  config.before { Git::Duet::Wrapper.stub(:user_name) { author.name } }
-  config.before { Git::Duet::Wrapper.stub(:author) { author } }
+  config.before { Git::Duet::Repo.stub(:user_email) { author.email } }
+  config.before { Git::Duet::Repo.stub(:user_name) { author.name } }
 end
 
 def author
@@ -38,7 +35,7 @@ def config_authors
 end
 
 def config_email
-  ['git-duet.email dev@mynewsdesk.com']
+  'git-duet.email dev@mynewsdesk.com'
 end
 
 
