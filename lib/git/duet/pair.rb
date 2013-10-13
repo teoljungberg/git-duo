@@ -25,9 +25,9 @@ module Git
       def pair_email
         format = repo.email
         format.split(' ').pop.
-          split('@').
+          split(?@).
           insert(1, ?+).
-          insert(2, authors.map(&:key).sort.join('+'), ?@).
+          insert(2, authors.map(&:key).sort.join(?+), ?@).
           join
       end
 
