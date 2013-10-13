@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe Git::Duet::Repo do
   subject { described_class.new '~/code/mynewsdesk' }
+  let(:home_code_mynewsdesk) { File.join ENV['HOME'], 'code', 'mynewsdesk' }
 
   describe '#new' do
     it 'expands the given path' do
@@ -44,8 +45,4 @@ describe Git::Duet::Repo do
       subject.email = config_email
     end
   end
-end
-
-def home_code_mynewsdesk
-  File.join ENV['HOME'], 'code', 'mynewsdesk'
 end
