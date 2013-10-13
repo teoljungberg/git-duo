@@ -16,6 +16,7 @@ describe Git::Duet::Repo do
     it 'filters the authors from the rest of the config' do
       subject.stub(:raw_duet_config) { config }
       expect(subject).to receive(:filter_authors).with(config) { config_authors }
+
       subject.authors
     end
   end
@@ -26,6 +27,7 @@ describe Git::Duet::Repo do
     it 'sets the authors' do
       expect(subject).to receive(:author=).exactly(config_authors.size).times
       expect(Git::Duet::Author).to receive(:import).exactly(config_authors.size).times
+
       subject.authors = config_authors
     end
   end
@@ -34,6 +36,7 @@ describe Git::Duet::Repo do
     it 'filters the email from the rest of the config' do
       subject.stub(:raw_duet_config) { config }
       expect(subject).to receive(:filter_email).with(config) { config_email }
+
       subject.email
     end
   end
