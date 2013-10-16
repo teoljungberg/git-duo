@@ -30,6 +30,11 @@ David Billskog and Teo Ljungberg <dev+billskog+teo@mynewsdesk.com>
 ```
 
 ```bash
+$ git duet teo billskog markus
+David Billskog and Markus Nordin and Teo Ljungberg <dev+billskog+markus+teo@mynewsdesk.com>
+```
+
+```bash
 $ git duet --email product@mynewsdesk.com
 David Billskog and Teo Ljungberg <product+billskog+teo@mynewsdesk.com>
 ```
