@@ -3,7 +3,7 @@ require 'optparse'
 
 module Git
   module Duet
-    class Cli
+    class CLI
       def self.start
         parser = OptionParser.new do |opts|
           opts.on '--add AUTHOR', 'Add an author. Format: "Key Author Name <author@example.com>"' do |string|

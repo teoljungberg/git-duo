@@ -2,4 +2,4 @@
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
 require 'git/duet/cli'
 
-Git::Duet::Cli.start
+Git::Duet::CLI.start
