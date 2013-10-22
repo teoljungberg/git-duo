@@ -5,6 +5,8 @@ module Git
   module Duet
     class CLI
       def self.start
+        puts current_repo.current_committer if ARGV.empty?
+
         parser = OptionParser.new do |opts|
           opts.on '--add AUTHOR', 'Add an author. Format: "Key Author Name <author@example.com>"' do |string|
             author = Author.import string
@@ -36,9 +38,8 @@ module Git
             Author.new(author, key)
           end
           Pair.new(authors).set
+          puts current_repo.current_committer
         end
-
-        puts current_repo.current_committer
 
       rescue OptionParser::MissingArgument
         abort "missing required argument\n\n #{parser.help}"

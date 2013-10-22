@@ -44,7 +44,6 @@ $ cd ../new-project
 $ git duet --import ../mynewsdesk
 # this will import the authors and email from the `mynewsdesk` project
 # into `new-project`
-Teo Ljungberg <teo.ljungberg@gmail.com>
 ```
 
 ```bash
