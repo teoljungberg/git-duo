@@ -36,7 +36,7 @@ describe Git::Duet::Repo do
   end
 
   describe '#email=' do
-    it 'sets the authors' do
+    it 'sets the email' do
       expect(subject).to receive(:group_email=)
 
       subject.email = config_email
