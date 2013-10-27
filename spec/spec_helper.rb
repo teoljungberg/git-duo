@@ -7,6 +7,7 @@ RSpec.configure do |config|
 
   config.before { Git::Duet::Repo.stub(:user_email) { author.email } }
   config.before { Git::Duet::Repo.stub(:user_name) { author.name } }
+  config.before { Git::Duet::Repo.any_instance.stub(:command) }
 end
 
 def author
