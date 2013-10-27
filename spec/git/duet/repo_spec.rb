@@ -6,12 +6,6 @@ describe Git::Duet::Repo do
   subject { described_class.new '~/code/mynewsdesk' }
   let(:home_code_mynewsdesk) { File.join ENV['HOME'], 'code', 'mynewsdesk' }
 
-  describe '#new' do
-    it 'expands the given path' do
-      expect(subject.repo).to eq home_code_mynewsdesk
-    end
-  end
-
   describe '#authors' do
     it 'filters the authors from the rest of the config' do
       subject.stub(:raw_duet_config) { config }

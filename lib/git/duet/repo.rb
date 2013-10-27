@@ -5,8 +5,6 @@ module Git
     class Repo
       EMAIL_KEY_REGEXP = /^(.*email).*$/
 
-      attr_reader :repo
-
       def initialize repo
         @repo = File.expand_path(repo)
       end
@@ -48,6 +46,7 @@ module Git
       end
 
       private
+      attr_reader :repo
 
       %w(user_email user_name).each do |method|
         define_method(method) { command 'config', "#{method.gsub(?_, ?.)}" }
