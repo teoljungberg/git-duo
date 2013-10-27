@@ -24,7 +24,7 @@ module Git
       end
 
       def to_s
-        "#{name} <#{email}>"
+        "#{key} #{name} <#{email}>"
       end
     end
   end

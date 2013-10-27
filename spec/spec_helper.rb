@@ -1,4 +1,4 @@
-require 'git/duet/repo'
+require 'git/duet'
 require 'ostruct'
 require 'pry'
 
@@ -10,10 +10,7 @@ RSpec.configure do |config|
 end
 
 def author
-  OpenStruct.new key: 'teo',
-    name: 'Teo Ljungberg',
-    email: 'teo@mynewsdesk.com',
-    full: 'Teo Ljungberg <teo@mynewsdesk.com>'
+  Author.import 'teo Teo Ljungberg <teo@mynewsdesk.com>'
 end
 
 def config
@@ -38,14 +35,8 @@ end
 
 def authors
   [
-    OpenStruct.new(key: 'billskog',
-                   name: 'David Billskog',
-                   email: 'david.billskog@mynewsdesk.com',
-                   full: 'David Billskog <david.billskog@mynewsdesk.com>'),
-    OpenStruct.new(key: 'teo',
-                   name: 'Teo Ljungberg',
-                   email: 'teo@mynewsdesk.com',
-                   full: 'Teo Ljungberg <teo@mynewsdesk.com>')
+    Git::Duet::Author.import('billskog David Billskog <david.billskog@mynewsdesk.com>'),
+    Git::Duet::Author.import('teo Teo Ljungberg <teo@mynewsdesk.com>')
   ]
 end
 

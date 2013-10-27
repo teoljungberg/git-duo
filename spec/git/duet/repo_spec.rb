@@ -5,23 +5,19 @@ require 'spec_helper'
 describe Git::Duet::Repo do
   subject { described_class.new '~/code/mynewsdesk' }
   let(:home_code_mynewsdesk) { File.join ENV['HOME'], 'code', 'mynewsdesk' }
+  before { subject.stub(:raw_duet_config) { config } }
 
   describe '#authors' do
     it 'extracts the authors from the git config' do
-      subject.stub(:raw_duet_config) { config }
-
-      subject.authors
+      author_keys = subject.authors.map(&:key)
+      expect(author_keys).to eq authors.map(&:key)
     end
   end
 
   describe '#authors=' do
-    let(:sample_author) { config_authors.sample }
-
     it 'sets the authors' do
-      expect(subject).to receive(:author=).exactly(config_authors.size).times
-      expect(Git::Duet::Author).to receive(:import).exactly(config_authors.size).times
-
-      subject.authors = config_authors
+      subject.authors = authors
+      expect(subject.authors.map(&:to_s)).to eq authors.map(&:to_s)
     end
   end
 

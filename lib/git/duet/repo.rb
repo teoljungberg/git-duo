@@ -1,4 +1,4 @@
-require 'git/duet/repo'
+require 'git/duet/author'
 
 module Git
   module Duet
@@ -10,7 +10,7 @@ module Git
       end
 
       def author= author
-        command 'config', "git-duet.#{author.key} '#{author}'"
+        command 'config', "git-duet.#{author.key} '#{author.name} <#{author.email}>'"
       end
 
       def author key
@@ -18,13 +18,14 @@ module Git
       end
 
       def authors
-        filter_authors raw_duet_config
+        filter_authors(raw_duet_config).map do |author_string|
+          Author.import extract_raw_author(author_string)
+        end.sort_by { |author| author.key }
       end
 
-      def authors= imported_authors
-        imported_authors.each do |import_string|
-          raw_author = extract_raw_author import_string
-          self.author = Author.import raw_author
+      def authors= authors
+        authors.each do |author|
+          self.author = Author.import author.to_s
         end
       end
 

@@ -37,4 +37,10 @@ describe Git::Duet::Author do
       }.to change { subject.key }.from 'teo'
     end
   end
+
+  describe '#to_s' do
+    it 'returns a string representation of the author' do
+      expect(subject.to_s).to eq 'teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>'
+    end
+  end
 end
