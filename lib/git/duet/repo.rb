@@ -59,7 +59,7 @@ module Git
       end
 
       def command *args
-        `git #{args.join(' ')}`.strip
+        `git #{args.join(' ')} 2>&1`.strip
       end
 
       def raw_duet_config
