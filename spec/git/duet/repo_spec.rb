@@ -7,9 +7,8 @@ describe Git::Duet::Repo do
   let(:home_code_mynewsdesk) { File.join ENV['HOME'], 'code', 'mynewsdesk' }
 
   describe '#authors' do
-    it 'filters the authors from the rest of the config' do
+    it 'extracts the authors from the git config' do
       subject.stub(:raw_duet_config) { config }
-      expect(subject).to receive(:filter_authors).with(config) { config_authors }
 
       subject.authors
     end
@@ -27,16 +26,15 @@ describe Git::Duet::Repo do
   end
 
   describe '#email' do
-    it 'filters the email from the rest of the config' do
+    it 'extracts the base email from the git config' do
       subject.stub(:raw_duet_config) { config }
-      expect(subject).to receive(:filter_email).with(config) { config_email }
 
       subject.email
     end
   end
 
   describe '#email=' do
-    it 'sets the email' do
+    it 'sets the base email' do
       expect(subject).to receive(:group_email=)
 
       subject.email = config_email
