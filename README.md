@@ -15,7 +15,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install duo-duo
+    $ gem install git-duo
 
 ## Usage
 
