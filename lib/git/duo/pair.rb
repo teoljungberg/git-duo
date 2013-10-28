@@ -1,7 +1,7 @@
-require 'git/duet/repo'
+require 'git/duo/repo'
 
 module Git
-  module Duet
+  module Duo
     class Pair
       def initialize authors
         @authors = authors

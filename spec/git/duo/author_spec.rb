@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'git/duet/author'
+require 'git/duo/author'
 
-describe Git::Duet::Author do
+describe Git::Duo::Author do
   subject { described_class.new 'Teo Ljungberg <teo.ljungberg@mynewsdesk.com>', 'teo' }
 
   describe '.import' do

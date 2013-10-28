@@ -1,7 +1,7 @@
-require 'git/duet/author'
+require 'git/duo/author'
 
 module Git
-  module Duet
+  module Duo
     class Repo
       EMAIL_KEY_REGEXP = /^(.*email).*$/
 
@@ -10,15 +10,15 @@ module Git
       end
 
       def author= author
-        command 'config', "git-duet.#{author.key} '#{author.name} <#{author.email}>'"
+        command 'config', "git-duo.#{author.key} '#{author.name} <#{author.email}>'"
       end
 
       def author key
-        command 'config', "git-duet.#{key}"
+        command 'config', "git-duo.#{key}"
       end
 
       def authors
-        filter_authors(raw_duet_config).map do |author_string|
+        filter_authors(raw_duo_config).map do |author_string|
           Author.import extract_raw_author(author_string)
         end.sort_by { |author| author.key }
       end
@@ -30,7 +30,7 @@ module Git
       end
 
       def email
-        filter_email raw_duet_config
+        filter_email raw_duo_config
       end
 
       def email= imported_email
@@ -55,19 +55,19 @@ module Git
       end
 
       def group_email= email
-        command 'config', "git-duet.email '#{email}'"
+        command 'config', "git-duo.email '#{email}'"
       end
 
       def command *args
         `git #{args.join(' ')} 2>&1`.strip
       end
 
-      def raw_duet_config
-        command(list_duet_config).split("\n")
+      def raw_duo_config
+        command(list_duo_config).split("\n")
       end
 
-      def list_duet_config
-        ["--git-dir=#{git_repo}", "config", "--get-regexp git-duet."]
+      def list_duo_config
+        ["--git-dir=#{git_repo}", "config", "--get-regexp git-duo."]
       end
 
       def filter_authors output
@@ -79,11 +79,11 @@ module Git
       end
 
       def extract_raw_author string
-        string.split('git-duet.')[1..-1].join ' '
+        string.split('git-duo.')[1..-1].join ' '
       end
 
       def extract_email string
-        string.split('git-duet.').pop.split(' ').pop
+        string.split('git-duo.').pop.split(' ').pop
       end
 
       def git_repo

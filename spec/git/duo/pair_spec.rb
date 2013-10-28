@@ -1,12 +1,12 @@
-require 'git/duet/pair'
-require 'git/duet/repo'
+require 'git/duo/pair'
+require 'git/duo/repo'
 require 'spec_helper'
 
-describe Git::Duet::Pair do
+describe Git::Duo::Pair do
   subject { described_class.new authors }
 
   describe '#set' do
-    before { Git::Duet::Repo.any_instance.stub(:email) { 'dev@mynewsdesk.com' } }
+    before { Git::Duo::Repo.any_instance.stub(:email) { 'dev@mynewsdesk.com' } }
 
     it 'sets up the pair name' do
       expect(subject).to receive(:set_pair_name) { pair_name }

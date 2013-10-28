@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
-require 'git/duet/repo'
+require 'git/duo/repo'
 
-puts Git::Duet::Repo.new(Dir.pwd).unpair!
+puts Git::Duo::Repo.new(Dir.pwd).unpair!

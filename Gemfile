@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in git-duet.gemspec
+# Specify your gem's dependencies in git-duo.gemspec
 gemspec

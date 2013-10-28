@@ -1,8 +1,8 @@
-require 'git/duet'
+require 'git/duo'
 require 'optparse'
 
 module Git
-  module Duet
+  module Duo
     class CLI
       def self.start
         puts current_repo.current_committer if ARGV.empty?

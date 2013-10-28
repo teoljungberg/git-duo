@@ -1,11 +1,11 @@
-require 'git/duet/repo'
-require 'git/duet/author'
+require 'git/duo/repo'
+require 'git/duo/author'
 require 'spec_helper'
 
-describe Git::Duet::Repo do
+describe Git::Duo::Repo do
   subject { described_class.new '~/code/mynewsdesk' }
   let(:home_code_mynewsdesk) { File.join ENV['HOME'], 'code', 'mynewsdesk' }
-  before { subject.stub(:raw_duet_config) { config } }
+  before { subject.stub(:raw_duo_config) { config } }
 
   describe '#authors' do
     it 'extracts the authors from the git config' do
@@ -23,7 +23,7 @@ describe Git::Duet::Repo do
 
   describe '#email' do
     it 'extracts the base email from the git config' do
-      subject.stub(:raw_duet_config) { config }
+      subject.stub(:raw_duo) { config }
 
       subject.email
     end

@@ -1,13 +1,13 @@
-# Git duet
+# Git Duo
 
-A git porcelain for duet programming. Changes git-config's user.name and
+A git porcelain for duo programming. Changes git-config's user.name and
 user.email settings so you can commit as more than one author.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'git-duet'
+    gem 'git-duo'
 
 And then execute:
 
@@ -15,33 +15,33 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install git-duet
+    $ gem install duo-duo
 
 ## Usage
 
 ```bash
-$ git duet --add "teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>"
-$ git duet --add "billskog David Billskog <david.billskog@mynewsdesk.com>"
+$ git duo --add "teo Teo Ljungberg <teo.ljungberg@mynewsdesk.com>"
+$ git duo --add "billskog David Billskog <david.billskog@mynewsdesk.com>"
 ```
 
 ```bash
-$ git duet teo billskog
+$ git duo teo billskog
 David Billskog and Teo Ljungberg <dev+billskog+teo@mynewsdesk.com>
 ```
 
 ```bash
-$ git duet teo billskog markus
+$ git duo teo billskog markus
 David Billskog and Markus Nordin and Teo Ljungberg <dev+billskog+markus+teo@mynewsdesk.com>
 ```
 
 ```bash
-$ git duet --email product@mynewsdesk.com
+$ git duo --email product@mynewsdesk.com
 David Billskog and Teo Ljungberg <product+billskog+teo@mynewsdesk.com>
 ```
 
 ```bash
 $ cd ../new-project
-$ git duet --import ../mynewsdesk
+$ git duo --import ../mynewsdesk
 # this will import the authors and email from the `mynewsdesk` project
 # into `new-project`
 ```
