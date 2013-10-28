@@ -46,13 +46,24 @@ module Git
         "#{user_name} <#{user_email}>"
       end
 
+      def user_email
+        command 'config', "user.email"
+      end
+
+      def user_name
+        command 'config', "user.name"
+      end
+
+      def user_email= new_user_email
+        command 'config', 'user.email', "'#{new_user_email}'"
+      end
+
+      def user_name= new_user_name
+        command 'config', 'user.name', "'#{new_user_name}'"
+      end
+
       private
       attr_reader :repo
-
-      %w(user_email user_name).each do |method|
-        define_method(method) { command 'config', "#{method.gsub(?_, ?.)}" }
-        define_method(method + ?=) { |new_value| command 'config', "#{method.gsub(?_, ?.)} '#{new_value}'" }
-      end
 
       def group_email= email
         command 'config', "git-duo.email '#{email}'"

@@ -17,22 +17,32 @@ module Git
       attr_reader :authors
 
       def pair_name
-        authors.
-          map(&:name).
-          join ' and '
+        join_authors authors
       end
 
       def pair_email
-        format = repo.email
-        format.split(' ').pop.
+        email = repo.email.split(' ').pop
+        insert_authors_into_email email
+      end
+
+      def set_pair_name
+        repo.user_name = pair_name
+      end
+
+      def set_pair_email
+        repo.user_email = pair_email
+      end
+
+      def insert_authors_into_email email
+        email.
           split(?@).
           insert(1, ?+).
           insert(2, authors.map(&:key).sort.join(?+), ?@).
           join
       end
 
-      %w(name email).each do |method|
-        define_method("set_pair_#{method}") { eval "repo.user_#{method} = pair_#{method}" }
+      def join_authors authors
+        authors.map(&:name).join ' and '
       end
 
       def display_committer
