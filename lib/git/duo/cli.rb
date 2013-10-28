@@ -48,7 +48,7 @@ module Git
       private
 
       def self.current_repo
-        @_current_repo ||= Repo.new(Dir.pwd)
+        @current_repo ||= Repo.new(Dir.pwd)
       end
     end
   end

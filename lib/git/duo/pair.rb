@@ -40,7 +40,7 @@ module Git
       end
 
       def repo
-        @_repo = Repo.new Dir.pwd
+        @repo ||= Repo.new Dir.pwd
       end
     end
   end
