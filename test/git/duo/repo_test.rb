@@ -19,5 +19,14 @@ module Git::Duo
       assert_instance_of User, repo.authors.sample
       assert wrapper.verify
     end
+
+    def test_email_returns_set_group_email
+      wrapper = Minitest::Mock.new
+      wrapper.expect(:config, git_config, ['--get-regexp git-duo'])
+      repo = Repo.new('~/code/mynewsdesk', wrapper)
+
+      assert_equal "batman+%names@gotham.travel", repo.email
+      assert wrapper.verify
+    end
   end
 end

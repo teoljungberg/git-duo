@@ -9,15 +9,22 @@ class Git::Duo::Repo
   end
 
   def authors
-    authors = config.
+    config.
       reject {|key| non_git_author? key }.
       map {|a| Git::Duo::User.import(a) }
+  end
+
+  def email
+    config.
+      select {|key| non_git_author? key }.
+      map {|key| key.gsub(/^email\s/, '') }.
+      first
   end
 
   private
 
   def non_git_author?(key)
-    key =~ /\.email/
+    key =~ /email/
   end
 
   def config

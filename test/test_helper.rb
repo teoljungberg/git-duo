@@ -7,7 +7,8 @@ require 'git/duo'
 
 def alfred_and_bruce
   [
-  'git-duo.bruce Bruce Wayne <batman@gotham.travel>',
-  'git-duo.alfred Alfred Pennyworth <alfred@gotham.travel>'
+    'git-duo.bruce Bruce Wayne <bruce@gotham.travel>',
+    'git-duo.alfred Alfred Pennyworth <alfred@gotham.travel>',
+    'git-duo.email batman+%names@gotham.travel'
   ]
 end
