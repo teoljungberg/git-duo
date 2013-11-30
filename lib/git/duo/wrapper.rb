@@ -1,5 +1,3 @@
-require 'pry'
-
 module Git
   module Duo
     class Wrapper

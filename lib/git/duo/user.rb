@@ -1,5 +1,4 @@
 require 'ostruct'
-require 'pry'
 
 class Git::Duo::User < OpenStruct
   EMAIL_REGEXP = /(?:<?(.+@[^>]+)>?)/
