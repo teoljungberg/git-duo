@@ -3,12 +3,12 @@ require 'pry'
 module Git
   module Duo
     class Wrapper
-      def initialize(*args)
-        @args = args
+      def initialize(directory)
+        @directory = directory
       end
 
-      def config
-        `git #{@args.join(' ')}`.split("\n")
+      def config(args)
+        `git --git-dir=#{@directory} #{__method__} #{args}`.split("\n")
       end
     end
   end
