@@ -9,6 +9,29 @@ module Git::Duo
     end
     attr_reader :user
 
+    def user_options
+      {
+        key: 'teo',
+        name: "Teo Ljungberg",
+        email: "teo.ljungberg@gmail.com"
+      }
+    end
+
+    def test_user_requires_name
+      user = User.new user_options.merge(name: nil)
+      refute user.valid?
+    end
+
+    def test_user_requires_email
+      user = User.new user_options.merge(email: nil)
+      refute user.valid?
+    end
+
+    def test_user_requires_key
+      user = User.new user_options.merge(key: nil)
+      refute user.valid?
+    end
+
     def test_user_import
       user = User.import("billskog David Billskog <bilskog@gmail.com")
       assert user.valid?
