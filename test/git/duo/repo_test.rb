@@ -13,7 +13,8 @@ module Git::Duo
     end
 
     def test_initialize_expands_directory_path
-      assert_equal repo.directory, File.join(ENV['HOME'], 'code', 'mynewsdesk')
+      expected = repo.directory
+      assert_equal expected, File.join(ENV['HOME'], 'code', 'mynewsdesk')
     end
 
     def test_authors_returns_user_objects
