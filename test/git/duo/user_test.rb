@@ -38,7 +38,7 @@ module Git::Duo
     end
 
     def test_user_to_s
-      expected = "teo Teo Ljungberg <teo.ljungberg@gmail.com>"
+      expected = "Teo Ljungberg <teo.ljungberg@gmail.com>"
       assert_equal expected, user.to_s
     end
   end

@@ -17,6 +17,6 @@ class Git::Duo::User < OpenStruct
   end
 
   def to_s
-    "#{key} #{name} <#{email}>"
+    "#{name} <#{email}>"
   end
 end
