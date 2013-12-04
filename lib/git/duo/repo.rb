@@ -21,10 +21,25 @@ class Git::Duo::Repo
       first
   end
 
+  def save
+    save_email
+    save_authors
+  end
+
   private
 
   def non_git_author?(key)
     key =~ /email/
+  end
+
+  def save_authors
+    authors.each do |author|
+      wrapper.config "git-duo.#{author.key} '#{author}'"
+    end
+  end
+
+  def save_email
+    wrapper.config "git-duo.email '#{email}'"
   end
 
   def config
