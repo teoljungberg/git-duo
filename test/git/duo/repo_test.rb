@@ -23,7 +23,7 @@ module Git::Duo
     end
 
     def test_email_returns_set_group_email
-      assert_equal "batman+%names@gotham.travel", repo.email
+      assert_equal "board+%names@gotham.travel", repo.email
       assert wrapper.verify
     end
   end
