@@ -12,3 +12,10 @@ def alfred_and_bruce
     Git::Duo::User.import('alfred Alfred Pennyworth <alfred@gotham.traval>')
   ]
 end
+
+def jim_and_harvey
+  [
+    Git::Duo::User.import('jim Jim Gordon <jim@gotham.travel>'),
+    Git::Duo::User.import('harvey Harvey Dent <harvey@gotham.travel>')
+  ]
+end

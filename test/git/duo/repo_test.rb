@@ -22,6 +22,20 @@ module Git::Duo
       assert wrapper.verify
     end
 
+    def test_import_authors_and_email
+      wrapper = Minitest::Mock.new.
+        expect(:config, :nope, ["git-duo.email 'law+%names@gotham.travel'"]).
+        expect(:config, :nope, ["git-duo.jim 'Jim Gordon <jim@gotham.travel>'"]).
+        expect(:config, :nope, ["git-duo.harvey 'Harvey Dent <harvey@gotham.travel>'"])
+
+      repo = Repo.new '~/code/mynewsdesk', wrapper
+      repo.authors = jim_and_harvey
+      repo.email = "law+%names@gotham.travel"
+      repo.save
+
+      assert wrapper.verify
+    end
+
     def test_email_returns_set_group_email
       assert_equal "board+%names@gotham.travel", repo.email
       assert wrapper.verify

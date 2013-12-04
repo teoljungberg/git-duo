@@ -9,16 +9,26 @@ class Git::Duo::Repo
   end
 
   def authors
+    return @authors if defined? @authors
     config.
       reject {|key| non_git_author? key }.
       map {|a| Git::Duo::User.import(a) }
   end
 
+  def authors=(new_authors)
+    @authors = new_authors
+  end
+
   def email
+    return @email if defined? @email
     config.
       select {|key| non_git_author? key }.
       map {|key| key.gsub(/^email\s/, '') }.
       first
+  end
+
+  def email=(new_email)
+    @email = new_email
   end
 
   def save
