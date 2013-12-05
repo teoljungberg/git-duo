@@ -3,9 +3,9 @@ require 'git/duo/wrapper'
 class Git::Duo::Repo
   attr_reader :directory, :wrapper
 
-  def initialize(directory, wrapper = nil)
+  def initialize(directory, opts = {})
     @directory = File.expand_path(directory)
-    @wrapper = wrapper || Git::Duo::Wrapper.new(git_directory)
+    @wrapper = opts.fetch(:wrapper) { Git::Duo::Wrapper.new(git_directory) }
   end
 
   def authors

@@ -4,12 +4,10 @@ module Git::Duo
   class Pair
     attr_reader :users, :base_email
 
-    def initialize(users, base_email, wrapper = nil)
+    def initialize(users, base_email, opts = {})
       @users = users.sort_by {|user| user.key }
       @base_email = base_email
-      @wrapper = wrapper || Git::Duo::Wrapper.new(
-        File.join(Dir.pwd, '.git')
-      )
+      @wrapper = opts.fetch(:wrapper) { Git::Duo::Wrapper.new File.join(Dir.pwd, '.git') }
     end
 
     def name

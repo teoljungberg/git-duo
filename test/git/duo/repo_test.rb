@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module Git::Duo
   class RepoTest < MiniTest::Test
     def setup
-      @repo ||= Repo.new '~/code/mynewsdesk', wrapper
+      @repo ||= Repo.new '~/code/mynewsdesk', wrapper: wrapper
     end
     attr_reader :repo
 
@@ -28,7 +28,7 @@ module Git::Duo
         expect(:config, :nope, ["git-duo.jim 'Jim Gordon <jim@gotham.travel>'"]).
         expect(:config, :nope, ["git-duo.harvey 'Harvey Dent <harvey@gotham.travel>'"])
 
-      repo = Repo.new '~/code/mynewsdesk', wrapper
+      repo = Repo.new '~/code/mynewsdesk', wrapper: wrapper
       repo.authors = jim_and_harvey
       repo.email = "law+%names@gotham.travel"
       repo.save
@@ -46,7 +46,7 @@ module Git::Duo
         expect(:config, :nope, ["git-duo.email 'board+%names@gotham.travel'"]).
         expect(:config, :nope, ["git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'"]).
         expect(:config, :nope, ["git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'"])
-      repo = Repo.new '~/code/mynewsdesk', new_wrapper
+      repo = Repo.new '~/code/mynewsdesk', wrapper: new_wrapper
 
       repo.save
       assert new_wrapper.verify

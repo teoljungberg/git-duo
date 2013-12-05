@@ -30,7 +30,7 @@ module Git::Duo
       wrapper = Minitest::Mock.new.
         expect(:config, :nope, ["user.name 'Alfred Pennyworth + Bruce Wayne'"]).
         expect(:config, :nope, ["user.email 'board+alfred+bruce@gotham.com'"])
-      pair = Pair.new dummy_users, "board+%names@gotham.com", wrapper
+      pair = Pair.new dummy_users, "board+%names@gotham.com", wrapper: wrapper
 
       pair.save
       wrapper.verify
