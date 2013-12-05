@@ -24,8 +24,7 @@ module Git::Duo
     alias_method :inspect, :to_s
 
     def save
-      save_pair_name
-      save_pair_email
+      !!(save_pair_name && save_pair_email)
     end
 
     private

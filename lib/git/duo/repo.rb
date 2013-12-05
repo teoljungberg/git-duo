@@ -32,8 +32,7 @@ class Git::Duo::Repo
   end
 
   def save
-    save_email
-    save_authors
+    !!(save_email && save_authors)
   end
 
   private

@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module Git::Duo
   class PairTest < MiniTest::Test
     def setup
-      @pair ||= Pair.new dummy_users, "board+%names@gotham.com"
+      @pair ||= Pair.new alfred_and_bruce, "board+%names@gotham.com", wrapper: DummyWrapper.new(:path_to_hell)
     end
     attr_reader :pair
 
@@ -27,13 +27,7 @@ module Git::Duo
     end
 
     def test_save
-      wrapper = Minitest::Mock.new.
-        expect(:config, :nope, ["user.name 'Alfred Pennyworth + Bruce Wayne'"]).
-        expect(:config, :nope, ["user.email 'board+alfred+bruce@gotham.com'"])
-      pair = Pair.new dummy_users, "board+%names@gotham.com", wrapper: wrapper
-
-      pair.save
-      wrapper.verify
+      assert pair.save
     end
   end
 end
