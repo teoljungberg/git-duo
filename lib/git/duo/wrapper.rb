@@ -6,7 +6,7 @@ module Git
       end
 
       def config(args)
-        `git --git-dir=#{@directory} #{__method__} #{args}`.split("\n")
+        `git --git-dir=#{@directory} #{__method__} #{args} 2>&1`.split("\n")
       end
     end
   end
