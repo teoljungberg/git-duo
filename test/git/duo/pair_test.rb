@@ -8,6 +8,18 @@ module Git::Duo
     end
     attr_reader :pair, :wrapper
 
+    def test_destroy
+      Wrapper.any_instance.expects(:config).with('--remove-section user')
+
+      Pair.destroy
+    end
+
+    def test_committer
+      Wrapper.any_instance.expects(:config).with('--get user.name')
+
+      Pair.committer
+    end
+
     def test_supports_multiple_authors
       pair = Pair.new alfred_and_bruce_rachel, "board+%names@gotham.travel"
       expected_name = "Alfred Pennyworth + Bruce Wayne + Rachel Dawes"
@@ -39,6 +51,7 @@ module Git::Duo
     def test_save
       wrapper.expects(:config).with("user.email 'board+alfred+bruce@gotham.travel'")
       wrapper.expects(:config).with("user.name 'Alfred Pennyworth + Bruce Wayne'")
+
       pair.save
     end
   end
