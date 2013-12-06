@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/unit'
+require "mocha/setup"
 require 'pry'
 
 $:<< File.dirname(__FILE__) + "/../lib"
@@ -25,10 +26,14 @@ end
 
 class DummyWrapper < Struct.new(:directory)
   def config(*)
-    [
-      'git-duo.bruce Bruce Wayne <bruce@gotham.travel>',
-      'git-duo.alfred Alfred Pennyworth <alfred@gotham.travel>',
-      'git-duo.email board+%names@gotham.travel'
-    ]
+    git_config
   end
+end
+
+def git_config
+  [
+    'git-duo.bruce Bruce Wayne <bruce@gotham.travel>',
+    'git-duo.alfred Alfred Pennyworth <alfred@gotham.travel>',
+    'git-duo.email board+%names@gotham.travel'
+  ]
 end

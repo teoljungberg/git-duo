@@ -3,9 +3,10 @@ require_relative '../../test_helper'
 module Git::Duo
   class PairTest < MiniTest::Test
     def setup
-      @pair ||= Pair.new alfred_and_bruce, "board+%names@gotham.com", wrapper: DummyWrapper.new(:path_to_hell)
+      @wrapper = DummyWrapper.new(:path_to_hell)
+      @pair ||= Pair.new alfred_and_bruce, "board+%names@gotham.com", wrapper: wrapper
     end
-    attr_reader :pair
+    attr_reader :pair, :wrapper
 
     def test_supports_multiple_authors
       pair = Pair.new alfred_and_bruce_rachel, "board+%names@gotham.com"
@@ -36,7 +37,9 @@ module Git::Duo
     end
 
     def test_save
-      assert pair.save
+      wrapper.expects(:config).with("user.email 'board+alfred+bruce@gotham.com'")
+      wrapper.expects(:config).with("user.name 'Alfred Pennyworth + Bruce Wayne'")
+      pair.save
     end
   end
 end

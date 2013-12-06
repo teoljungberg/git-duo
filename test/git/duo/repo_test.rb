@@ -3,9 +3,10 @@ require_relative '../../test_helper'
 module Git::Duo
   class RepoTest < MiniTest::Test
     def setup
-      @repo ||= Repo.new '~/code/mynewsdesk', wrapper: DummyWrapper.new(:path_to_hell)
+      @wrapper = DummyWrapper.new(:path_to_hell)
+      @repo ||= Repo.new '~/code/mynewsdesk', wrapper: wrapper
     end
-    attr_reader :repo
+    attr_reader :repo, :wrapper
 
     def test_initialize_expands_directory_path
       expected = repo.directory
@@ -17,13 +18,23 @@ module Git::Duo
     end
 
     def test_import_authors
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
+      wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
+      wrapper.expects(:config).with("git-duo.jim 'Jim Gordon <jim@gotham.travel>'")
+      wrapper.expects(:config).with("git-duo.harvey 'Harvey Dent <harvey@gotham.travel>'")
+
       repo.authors = jim_and_harvey
-      assert repo.save
+      repo.save
     end
 
     def test_import_email
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
+      wrapper.expects(:config).with("git-duo.email 'law+%names@gotham.travel'")
+      wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
+      wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
+
       repo.email = "law+%names@gotham.travel"
-      assert repo.save
+      repo.save
     end
 
     def test_email_returns_set_group_email
@@ -31,7 +42,12 @@ module Git::Duo
     end
 
     def test_save
-      assert repo.save
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
+      wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
+      wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
+      wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
+
+      repo.save
     end
   end
 end
