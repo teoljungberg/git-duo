@@ -7,6 +7,15 @@ module Git::Duo
     end
     attr_reader :pair
 
+    def test_supports_multiple_authors
+      pair = Pair.new alfred_and_bruce_rachel, "board+%names@gotham.com"
+      expected_name = "Alfred Pennyworth + Bruce Wayne + Rachel Dawes"
+      expected_email = "board+alfred+bruce+rachel@gotham.com"
+
+      assert_equal expected_name, pair.name
+      assert_equal expected_email, pair.email
+    end
+
     def test_name
       expected = 'Alfred Pennyworth + Bruce Wayne'
       assert_equal expected, pair.name
