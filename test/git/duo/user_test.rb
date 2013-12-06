@@ -3,17 +3,15 @@ require_relative '../../test_helper'
 module Git::Duo
   class UserTest < MiniTest::Test
     def setup
-      @user ||= User.new({ key: 'teo',
-                           name: "Teo Ljungberg",
-                           email: "teo.ljungberg@gmail.com" })
+      @user ||= User.new(user_options)
     end
     attr_reader :user
 
     def user_options
       {
-        key: 'teo',
-        name: "Teo Ljungberg",
-        email: "teo.ljungberg@gmail.com"
+        key: 'alfred',
+        name: 'Alfred Pennyworth',
+        email: 'alfred@gotham.travel'
       }
     end
 
@@ -33,12 +31,12 @@ module Git::Duo
     end
 
     def test_user_import
-      user = User.import("billskog David Billskog <bilskog@gmail.com")
+      user = User.import("bruce Bruce Wayne <bruce@gotham.travel>")
       assert user.valid?
     end
 
     def test_user_to_s
-      expected = "Teo Ljungberg <teo.ljungberg@gmail.com>"
+      expected = "Alfred Pennyworth <alfred@gotham.travel>"
       assert_equal expected, user.to_s
     end
   end
