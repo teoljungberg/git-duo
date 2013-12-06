@@ -16,8 +16,12 @@ module Git::Duo
       assert_instance_of User, repo.authors.sample
     end
 
-    def test_import_authors_and_email
+    def test_import_authors
       repo.authors = jim_and_harvey
+      assert repo.save
+    end
+
+    def test_import_email
       repo.email = "law+%names@gotham.travel"
       assert repo.save
     end
