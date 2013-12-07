@@ -1,16 +1,17 @@
 # Git Duo
 
+https://github.com/teoljungberg/git-duo
+
+# Description
+
 A git porcelain for duo programming. Changes git-config's user.name and
 user.email settings so you can commit as more than one author.
 
-## Installation
+# Features/problems:
 
-* Clone down this repository
-* Run `rake install`
-* Good to go
+* FIX (list of features or problems)
 
-## Usage
-
+# Synopsis
 ```bash
 $ git duo --email "board+%names@mynewsdesk.com"
 ```
@@ -26,6 +27,7 @@ Alfred Pennyworth + Bruce Wayne <board+alfred+bruce@gotham.travel>
 ```
 
 ```bash
+$ git duo --add "jim Jim Gordon <jim@gotham.travel>"
 $ git duo alfred bruce jim
 Alfred Pennyworth + Bruce Wayne + Jim Gordon <dev+alfred+bruce+jim@gotham.traval>
 ```
@@ -47,6 +49,26 @@ $ git solo
 Teo Ljungberg <teo.ljungberg@gmail.com>
 ```
 
+# Requirements
+
+* Ruby 1.9 and above
+* Rake
+
+# Install
+
+* Clone down this repository
+* Run `rake install`
+* Good to go
+
+# Developers
+
+After checking out the source, run:
+
+  $ rake newb
+
+This task will install any missing dependencies, the gem itself and
+run the tests
+
 ## Contributing
 
 1. Fork it
@@ -54,3 +76,28 @@ Teo Ljungberg <teo.ljungberg@gmail.com>
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+# License
+
+(The MIT License)
+
+Copyright (c) 2013 FIX
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+S
