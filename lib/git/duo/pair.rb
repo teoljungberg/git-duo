@@ -11,20 +11,20 @@ module Git
         wrapper.config '--get user.name'
       end
 
-      attr_reader :users, :base_email, :wrapper
+      attr_reader :authors, :base_email, :wrapper
 
-      def initialize(users, base_email, opts = {})
-        @users = users.sort_by {|user| user.key }
+      def initialize(authors, base_email, opts = {})
+        @authors = authors.sort_by {|author| author.key }
         @base_email = base_email
         @wrapper = opts.fetch(:wrapper) { Git::Duo::Wrapper.new File.join(Dir.pwd, '.git') }
       end
 
       def name
-        users.map(&:name).join ' + '
+        authors.map(&:name).join ' + '
       end
 
       def email
-        base_email.gsub "%names", users.map(&:key).join(?+)
+        base_email.gsub "%names", authors.map(&:key).join(?+)
       end
 
       def to_s

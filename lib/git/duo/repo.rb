@@ -1,4 +1,5 @@
 require 'git/duo/wrapper'
+require 'git/duo/author'
 
 module Git
   module Duo
@@ -14,7 +15,7 @@ module Git
         return @authors if defined? @authors
         config.
           reject {|key| non_git_author? key }.
-          map {|a| Git::Duo::User.import(a) }
+          map {|a| Git::Duo::Author.import(a) }
       end
 
       def authors=(new_authors)

@@ -8,19 +8,19 @@ require 'git/duo'
 
 def alfred_and_bruce
   [
-    Git::Duo::User.import('bruce Bruce Wayne <bruce@gotham.travel>'),
-    Git::Duo::User.import('alfred Alfred Pennyworth <alfred@gotham.traval>')
+    Git::Duo::Author.import('bruce Bruce Wayne <bruce@gotham.travel>'),
+    Git::Duo::Author.import('alfred Alfred Pennyworth <alfred@gotham.traval>')
   ]
 end
 
 def alfred_and_bruce_rachel
-  alfred_and_bruce << Git::Duo::User.import('rachel Rachel Dawes <rachel@gotham.travel>')
+  alfred_and_bruce << Git::Duo::Author.import('rachel Rachel Dawes <rachel@gotham.travel>')
 end
 
 def jim_and_harvey
   [
-    Git::Duo::User.import('jim Jim Gordon <jim@gotham.travel>'),
-    Git::Duo::User.import('harvey Harvey Dent <harvey@gotham.travel>')
+    Git::Duo::Author.import('jim Jim Gordon <jim@gotham.travel>'),
+    Git::Duo::Author.import('harvey Harvey Dent <harvey@gotham.travel>')
   ]
 end
 

@@ -2,11 +2,11 @@ require 'ostruct'
 
 module Git
   module Duo
-    class User < OpenStruct
+    class Author < OpenStruct
       EMAIL_REGEXP = /(?:<?(.+@[^>]+)>?)/
 
-      def self.import(new_user)
-        key, *author = new_user.split(?\s)
+      def self.import(new_author)
+        key, *author = new_author.split(?\s)
         first, last, email = author
 
         new({ key: key,

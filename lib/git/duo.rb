@@ -1,5 +1,5 @@
 require "git/duo/version"
-require "git/duo/user"
+require "git/duo/author"
 require "git/duo/repo"
 require "git/duo/core_extensions"
 require "git/duo/pair"

@@ -13,8 +13,8 @@ module Git::Duo
       assert_equal expected, File.join(ENV['HOME'], 'code', 'mynewsdesk')
     end
 
-    def test_authors_returns_user_objects
-      assert_instance_of User, repo.authors.sample
+    def test_authors_returns_author_objects
+      assert_instance_of Author, repo.authors.sample
     end
 
     def test_import_authors
