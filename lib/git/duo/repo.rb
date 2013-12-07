@@ -56,7 +56,7 @@ module Git
       end
 
       def config
-        @config ||= wrapper.
+        wrapper.
           config('--get-regexp git-duo').
           select {|key| key.start_with? 'git-duo' }.
           map {|config| config.gsub('git-duo.', '') }

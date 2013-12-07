@@ -42,7 +42,7 @@ module Git::Duo
     end
 
     def test_save
-      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
       wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
       wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
       wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
