@@ -9,7 +9,9 @@ user.email settings so you can commit as more than one author.
 
 # Features/problems:
 
-* FIX (list of features or problems)
+* Keep pairs per repository
+* Import pairs between different repositories
+* Pairing made easy(-ier)
 
 # Synopsis
 ```bash
@@ -64,7 +66,9 @@ Teo Ljungberg <teo.ljungberg@gmail.com>
 
 After checking out the source, run:
 
-  $ rake newb
+```bash
+$ rake newb
+```
 
 This task will install any missing dependencies, the gem itself and
 run the tests
