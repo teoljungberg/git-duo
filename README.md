@@ -1,6 +1,8 @@
 # Git Duo
 
-https://github.com/teoljungberg/git-duo
+- [home](https://github.com/teoljungberg/git-duo)
+- [code](https://github.com/teoljungberg/git-duo)
+- [bugs](https://github.com/teoljungberg/git-duo/issues)
 
 # Description
 
