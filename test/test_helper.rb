@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/unit'
 require "mocha/setup"
-require 'pry'
 
 $:<< File.dirname(__FILE__) + "/../lib"
 require 'git/duo'
