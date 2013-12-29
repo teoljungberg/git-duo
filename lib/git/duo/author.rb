@@ -1,8 +1,6 @@
-require 'ostruct'
-
 module Git
   module Duo
-    class Author < OpenStruct
+    class Author
       EMAIL_REGEXP = /(?:<?(.+@[^>]+)>?)/
 
       def self.import(new_author)
@@ -12,6 +10,14 @@ module Git
         new({ key: key,
               name: "#{first} #{last}",
               email: email.match(EMAIL_REGEXP)[1] })
+      end
+
+      attr_reader :key, :name, :email
+
+      def initialize(opts = {})
+        @key = opts[:key]
+        @name = opts[:name]
+        @email = opts[:email]
       end
 
       def valid?
