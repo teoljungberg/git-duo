@@ -75,6 +75,11 @@ $ rake newb
 This task will install any missing dependencies, the gem itself and
 run the tests
 
+
+## Autotest
+* Install autotest (as a part of [ZenTest][zentest])
+* Install [autotest-suffix][autotest-suffix] (since I prefer `foo_test.rb` to `test_foo.rb`)
+
 ## Contributing
 
 1. Fork it
@@ -82,3 +87,6 @@ run the tests
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[zentest]: https://github.com/seattlerb/ZenTest
+[autotest-suffix]: https://github.com/blowmage/autotest-suffix/
