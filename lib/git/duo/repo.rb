@@ -22,6 +22,13 @@ module Git
         @authors = new_authors
       end
 
+      def committer
+        name = wrapper.config("user.name").shift
+        email = wrapper.config("user.email").shift
+
+        Author.new(name: name, email: email).to_s
+      end
+
       def email
         return @email if defined? @email
         config.

@@ -7,10 +7,6 @@ module Git
         wrapper.config '--remove-section user'
       end
 
-      def self.committer
-        wrapper.config '--get user.name'
-      end
-
       attr_reader :authors, :base_email, :wrapper
 
       def initialize(authors, base_email, opts = {})

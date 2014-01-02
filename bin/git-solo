@@ -3,4 +3,4 @@ $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
 require 'git/duo/pair'
 
 Git::Duo::Pair.destroy
-puts Git::Duo::Pair.committer
+puts Git::Duo::Repo.committer

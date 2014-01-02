@@ -27,6 +27,14 @@ module Git::Duo
       repo.save
     end
 
+    def test_committer
+      wrapper.expects(:config).with('user.name').returns ["Bruce Wayne"]
+      wrapper.expects(:config).with('user.email').returns ["bruce@gotham.travel"]
+
+      expected = "Bruce Wayne <bruce@gotham.travel>"
+      assert_equal expected, repo.committer
+    end
+
     def test_import_email
       wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
       wrapper.expects(:config).with("git-duo.email 'law+%names@gotham.travel'")
