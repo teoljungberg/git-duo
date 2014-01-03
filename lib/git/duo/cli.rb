@@ -36,7 +36,8 @@ module Git
 
         unless ARGV.empty?
           authors = ARGV.sort.map do |key|
-            author = current_repo.authors.where(key: key).first
+            collection = AuthorCollection.new(current_repo.authors)
+            author = collection.where(key: key).first
             abort("`#{key}` can't be found, see --help on how to add new authors") unless author
             Author.new(key: key, name: author.name, email: author.email)
           end
