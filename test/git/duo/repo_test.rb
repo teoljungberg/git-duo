@@ -8,6 +8,13 @@ module Git::Duo
     end
     attr_reader :repo, :wrapper
 
+    def test_current_inits_repo_with_current_dir
+      repo = Repo.current
+      expected = Dir.pwd
+
+      assert_equal expected, repo.directory
+    end
+
     def test_initialize_expands_directory_path
       expected = repo.directory
       assert_equal expected, File.join(ENV['HOME'], 'code', 'mynewsdesk')
@@ -47,6 +54,12 @@ module Git::Duo
 
     def test_email_returns_set_group_email
       assert_equal "board+%names@gotham.travel", repo.email
+    end
+
+    def test_solo!
+      wrapper.expects(:config).with('--remove-section user')
+
+      repo.solo!
     end
 
     def test_save

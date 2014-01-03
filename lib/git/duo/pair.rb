@@ -3,10 +3,6 @@ require 'git/duo/wrapper'
 module Git
   module Duo
     class Pair
-      def self.destroy
-        wrapper.config '--remove-section user'
-      end
-
       attr_reader :authors, :base_email, :wrapper
 
       def initialize(authors, base_email, opts = {})
@@ -41,10 +37,6 @@ module Git
 
       def save_pair_email
         wrapper.config "user.email '#{email}'"
-      end
-
-      def self.wrapper
-        Wrapper.new File.join(Dir.pwd, '.git')
       end
     end
   end

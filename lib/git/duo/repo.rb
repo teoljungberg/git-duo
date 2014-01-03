@@ -4,6 +4,10 @@ require 'git/duo/author'
 module Git
   module Duo
     class Repo
+      def self.current
+        new Dir.pwd
+      end
+
       attr_reader :directory, :wrapper
 
       def initialize(directory, opts = {})
@@ -39,6 +43,10 @@ module Git
 
       def email=(new_email)
         @email = new_email
+      end
+
+      def solo!
+        wrapper.config '--remove-section user'
       end
 
       def save
