@@ -25,7 +25,7 @@ module Git::Duo
     end
 
     def test_import_authors
-      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
       wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
       wrapper.expects(:config).with("git-duo.jim 'Jim Gordon <jim@gotham.travel>'")
       wrapper.expects(:config).with("git-duo.harvey 'Harvey Dent <harvey@gotham.travel>'")
@@ -43,7 +43,7 @@ module Git::Duo
     end
 
     def test_import_email
-      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config)
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
       wrapper.expects(:config).with("git-duo.email 'law+%names@gotham.travel'")
       wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
       wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
@@ -68,6 +68,23 @@ module Git::Duo
       wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
       wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
 
+      repo.save
+    end
+
+    def test_save_doesnt_save_email_if_nil
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
+      wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
+      wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
+
+      repo.email = nil
+      repo.save
+    end
+
+    def test_save_doesnt_save_authors_if_empty
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
+      wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
+
+      repo.authors = []
       repo.save
     end
   end

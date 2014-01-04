@@ -50,8 +50,8 @@ module Git
       end
 
       def save
-        save_email
-        save_authors
+        save_email if email
+        save_authors if authors
       end
 
       private
