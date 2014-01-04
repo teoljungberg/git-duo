@@ -30,12 +30,12 @@ module Git::Duo
       refute author.valid?
     end
 
-    def test_author_import
+    def test_import
       author = Author.import("bruce Bruce Wayne <bruce@gotham.travel>")
       assert author.valid?
     end
 
-    def test_author_to_s
+    def test_to_s
       expected = "Alfred Pennyworth <alfred@gotham.travel>"
       assert_equal expected, author.to_s
     end

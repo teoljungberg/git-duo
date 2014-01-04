@@ -8,7 +8,7 @@ module Git::Duo
     end
     attr_reader :pair, :wrapper
 
-    def test_supports_multiple_authors
+    def test_pair_supports_multiple_authors
       pair = Pair.new alfred_and_bruce_rachel, "board+%names@gotham.travel"
       expected_name = "Alfred Pennyworth + Bruce Wayne + Rachel Dawes"
       expected_email = "board+alfred+bruce+rachel@gotham.travel"

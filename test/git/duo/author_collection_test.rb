@@ -8,15 +8,15 @@ module Git::Duo
     end
     attr_reader :collection
 
-    def test_existing_keys
+    def test_where_with_existing_keys
       refute_empty collection.where(key: 'alfred')
     end
 
-    def test_nonexisting_keys
+    def test_where_with_nonexisting_keys_returns_empty_array
       assert_empty collection.where(omg: 0)
     end
 
-    def test_returns_the_result_of_the_valid_search
+    def test_where_returns_the_result_of_the_valid_query
       refute_empty collection.where(key: 'alfred', omg: 0)
       refute_empty collection.where(omg: 0, key: 'alfred')
     end

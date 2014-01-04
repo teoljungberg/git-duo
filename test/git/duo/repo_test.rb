@@ -24,7 +24,7 @@ module Git::Duo
       assert_instance_of Author, repo.authors.sample
     end
 
-    def test_import_authors
+    def test_importing_authors
       wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
       wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
       wrapper.expects(:config).with("git-duo.jim 'Jim Gordon <jim@gotham.travel>'")
@@ -42,7 +42,7 @@ module Git::Duo
       assert_equal expected, repo.committer
     end
 
-    def test_import_email
+    def test_importing_email
       wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
       wrapper.expects(:config).with("git-duo.email 'law+%names@gotham.travel'")
       wrapper.expects(:config).with("git-duo.alfred 'Alfred Pennyworth <alfred@gotham.travel>'")
@@ -56,7 +56,7 @@ module Git::Duo
       assert_equal "board+%names@gotham.travel", repo.email
     end
 
-    def test_solo!
+    def test_solo_bang_resets_the_pair
       wrapper.expects(:config).with('--remove-section user')
 
       repo.solo!
