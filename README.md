@@ -12,7 +12,7 @@ user.email settings so you can commit as more than one author.
 # Features/problems:
 
 * Keep pairs per repository
-* Import pairs between different repositories
+* Import pairs between repositories
 * Pairing made easy(-ier)
 
 # Synopsis
@@ -74,7 +74,6 @@ $ rake newb
 
 This task will install any missing dependencies, the gem itself and
 run the tests
-
 
 ## Autotest
 * Install autotest (as a part of [ZenTest][zentest])
