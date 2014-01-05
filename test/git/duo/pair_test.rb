@@ -4,7 +4,7 @@ module Git::Duo
   class PairTest < MiniTest::Test
     def setup
       @wrapper = DummyWrapper.new(:path_to_hell)
-      @pair ||= Pair.new alfred_and_bruce, wrapper: wrapper
+      @pair = Pair.new alfred_and_bruce, wrapper: wrapper
     end
     attr_reader :pair, :wrapper
 

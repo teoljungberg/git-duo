@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module Git::Duo
   class AuthorTest < MiniTest::Test
     def setup
-      @author ||= Author.new(author_options)
+      @author = Author.new(author_options)
     end
     attr_reader :author
 

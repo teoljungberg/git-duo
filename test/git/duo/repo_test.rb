@@ -4,7 +4,7 @@ module Git::Duo
   class RepoTest < MiniTest::Test
     def setup
       @wrapper = DummyWrapper.new(:path_to_hell)
-      @repo ||= Repo.new '~/code/mynewsdesk', wrapper: wrapper
+      @repo = Repo.new '~/code/mynewsdesk', wrapper: wrapper
     end
     attr_reader :repo, :wrapper
 
