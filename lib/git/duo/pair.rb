@@ -1,13 +1,13 @@
 require 'git/duo/wrapper'
+require 'pry'
 
 module Git
   module Duo
     class Pair
-      attr_reader :authors, :base_email, :wrapper
+      attr_reader :authors, :wrapper
 
-      def initialize(authors, base_email, opts = {})
+      def initialize authors, opts = {}
         @authors = authors.sort_by {|author| author.key }
-        @base_email = base_email
         @wrapper = opts.fetch(:wrapper) { Git::Duo::Wrapper.new File.join(Dir.pwd, '.git') }
       end
 
@@ -30,6 +30,10 @@ module Git
       end
 
       private
+
+      def base_email
+        wrapper.config("git-duo.email").shift
+      end
 
       def save_pair_name
         wrapper.config "user.name '#{name}'"

@@ -4,12 +4,15 @@ module Git::Duo
   class PairTest < MiniTest::Test
     def setup
       @wrapper = DummyWrapper.new(:path_to_hell)
-      @pair ||= Pair.new alfred_and_bruce, "board+%names@gotham.travel", wrapper: wrapper
+      @pair ||= Pair.new alfred_and_bruce, wrapper: wrapper
     end
     attr_reader :pair, :wrapper
 
     def test_pair_supports_multiple_authors
-      pair = Pair.new alfred_and_bruce_rachel, "board+%names@gotham.travel"
+      wrapper.expects(:config).with("git-duo.email").
+        returns(["board+%names@gotham.travel"]).at_least_once
+
+      pair = Pair.new alfred_and_bruce_rachel, wrapper: wrapper
       expected_name = "Alfred Pennyworth + Bruce Wayne + Rachel Dawes"
       expected_email = "board+alfred+bruce+rachel@gotham.travel"
 
@@ -23,11 +26,17 @@ module Git::Duo
     end
 
     def test_email
+      wrapper.expects(:config).with("git-duo.email").
+        returns(["board+%names@gotham.travel"]).at_least_once
+
       expected = 'board+alfred+bruce@gotham.travel'
       assert_equal expected, pair.email
     end
 
     def test_to_s
+      wrapper.expects(:config).with("git-duo.email").
+        returns(["board+%names@gotham.travel"]).at_least_once
+
       expected = 'Alfred Pennyworth + Bruce Wayne <board+alfred+bruce@gotham.travel>'
       assert_equal expected, pair.to_s
     end
@@ -37,6 +46,9 @@ module Git::Duo
     end
 
     def test_save
+      wrapper.expects(:config).with("git-duo.email").
+        returns(["board+%names@gotham.travel"]).at_least_once
+
       wrapper.expects(:config).with("user.email 'board+alfred+bruce@gotham.travel'")
       wrapper.expects(:config).with("user.name 'Alfred Pennyworth + Bruce Wayne'")
 

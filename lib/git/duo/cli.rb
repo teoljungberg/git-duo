@@ -41,7 +41,7 @@ module Git
             abort("`#{key}` can't be found, see --help on how to add new authors") unless author
             Author.new(key: key, name: author.name, email: author.email)
           end
-          pair = Pair.new(authors, current_repo.email)
+          pair = Pair.new authors
           pair.save
           puts pair.to_s
         end
