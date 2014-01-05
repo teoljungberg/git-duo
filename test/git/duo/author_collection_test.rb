@@ -20,5 +20,9 @@ module Git::Duo
       refute_empty collection.where(key: 'alfred', omg: 0)
       refute_empty collection.where(omg: 0, key: 'alfred')
     end
+
+    def test_where_returns_empty_array_with_an_empty_search
+      assert_empty collection.where
+    end
   end
 end
