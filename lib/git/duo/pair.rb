@@ -1,5 +1,4 @@
 require 'git/duo/wrapper'
-require 'pry'
 
 module Git
   module Duo
