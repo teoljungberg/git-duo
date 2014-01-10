@@ -1,7 +1,13 @@
 module Git
   module Duo
-    class AuthorCollection < Struct.new(:authors)
-      def where(opts = {})
+    class AuthorCollection
+      attr_reader :authors
+
+      def initialize authors
+        @authors = authors
+      end
+
+      def where opts = {}
         result = []
         result += opts.
           select {|k, _| authors.sample.respond_to? k }.
