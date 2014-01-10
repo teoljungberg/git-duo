@@ -32,7 +32,7 @@ module Git
       private
 
       def base_email
-        wrapper.config("git-duo.email").shift
+        wrapper.config("git-duo.email").first
       end
 
       def save_pair_name
