@@ -17,7 +17,7 @@ user.email settings so you can commit as more than one author.
 
 # Synopsis
 ```bash
-$ git duo --email "board+%names@mynewsdesk.com"
+$ git duo --email "board+%names@gotham.travel"
 ```
 
 ```bash
