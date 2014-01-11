@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'minitest/unit'
 require "mocha/setup"
 
 $:<< File.dirname(__FILE__) + "/../lib"
