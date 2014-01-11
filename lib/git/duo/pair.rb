@@ -33,7 +33,16 @@ module Git
 
       def base_email
         wrapper.config("git-duo.email").first ||
+          guess_base_email_from_authors ||
           raise(Git::Duo::EmailNotImplemented)
+      end
+
+      def guess_base_email_from_authors
+        domains = authors.map do |author|
+          author.email.split(?@).last
+        end.uniq
+
+        "dev+%names@#{domains.first}" if domains.size == 1
       end
 
       def save_pair_name

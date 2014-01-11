@@ -33,12 +33,20 @@ module Git::Duo
       assert_equal expected, pair.email
     end
 
-    def test_email_raises_error_if_not_implemented
+    def test_email_guesses_the_email_domain_from_authors
+      wrapper.expects(:config).with("git-duo.email").
+        returns([]).at_least_once
+
+      expected = "dev+alfred+bruce@gotham.travel"
+      assert_equal expected, pair.email
+    end
+
+    def test_email_raises_error_if_domain_could_not_be_guessed
       wrapper.expects(:config).with("git-duo.email").
         returns([]).at_least_once
 
       assert_raises Git::Duo::EmailNotImplemented do
-        pair.email
+        Pair.new(bruce_and_edward, wrapper: wrapper).email
       end
     end
 

@@ -15,6 +15,13 @@ def alfred_and_bruce_rachel
   alfred_and_bruce << Git::Duo::Author.import('rachel Rachel Dawes <rachel@gotham.travel>')
 end
 
+def bruce_and_edward
+  [
+    Git::Duo::Author.import('bruce Bruce Wayne <bruce@gotham.travel>'),
+    Git::Duo::Author.import('riddler Edward Nigma <riddler@guess.com>')
+  ]
+end
+
 def jim_and_harvey
   [
     Git::Duo::Author.import('jim Jim Gordon <jim@gotham.travel>'),
