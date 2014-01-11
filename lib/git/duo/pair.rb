@@ -1,4 +1,5 @@
 require 'git/duo/wrapper'
+require 'git/duo/exceptions'
 
 module Git
   module Duo
@@ -31,7 +32,8 @@ module Git
       private
 
       def base_email
-        wrapper.config("git-duo.email").first
+        wrapper.config("git-duo.email").first ||
+          raise(Git::Duo::EmailNotImplemented)
       end
 
       def save_pair_name

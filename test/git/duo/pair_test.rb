@@ -33,6 +33,15 @@ module Git::Duo
       assert_equal expected, pair.email
     end
 
+    def test_email_raises_error_if_not_implemented
+      wrapper.expects(:config).with("git-duo.email").
+        returns([]).at_least_once
+
+      assert_raises Git::Duo::EmailNotImplemented do
+        pair.email
+      end
+    end
+
     def test_to_s
       wrapper.expects(:config).with("git-duo.email").
         returns(["board+%names@gotham.travel"]).at_least_once

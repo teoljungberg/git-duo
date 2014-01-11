@@ -38,7 +38,7 @@ module Git
           authors = ARGV.sort.map do |key|
             author = AuthorCollection.new(current_repo.authors).
               where(key: key).first
-            abort("`#{key}` can't be found, see --help on how to add new authors") unless author
+            abort "`#{key}` can't be found, see -h on how to add new authors" unless author
             Author.new(key: key, name: author.name, email: author.email)
           end
           pair = Pair.new authors
@@ -49,6 +49,8 @@ module Git
         current_repo.save
       rescue OptionParser::MissingArgument
         abort "missing required argument\n\n #{parser.help}"
+      rescue Git::Duo::EmailNotImplementedError
+        abort "`Email format isn't set, see -h on how to set the email format"
       end
 
       private
