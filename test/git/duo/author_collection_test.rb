@@ -9,7 +9,7 @@ module Git::Duo
     attr_reader :collection
 
     def test_where_with_existing_keys
-      refute_empty collection.where(key: 'alfred')
+      assert_instance_of Author, collection.where(key: 'alfred').first
     end
 
     def test_where_with_nonexisting_keys_returns_empty_array
