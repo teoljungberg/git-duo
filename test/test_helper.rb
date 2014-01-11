@@ -7,7 +7,7 @@ require 'git/duo'
 def alfred_and_bruce
   [
     Git::Duo::Author.import('bruce Bruce Wayne <bruce@gotham.travel>'),
-    Git::Duo::Author.import('alfred Alfred Pennyworth <alfred@gotham.traval>')
+    Git::Duo::Author.import('alfred Alfred Pennyworth <alfred@gotham.travel>')
   ]
 end
 

@@ -33,7 +33,7 @@ Alfred Pennyworth + Bruce Wayne <board+alfred+bruce@gotham.travel>
 ```bash
 $ git duo --add "jim Jim Gordon <jim@gotham.travel>"
 $ git duo alfred bruce jim
-Alfred Pennyworth + Bruce Wayne + Jim Gordon <dev+alfred+bruce+jim@gotham.traval>
+Alfred Pennyworth + Bruce Wayne + Jim Gordon <dev+alfred+bruce+jim@gotham.travel>
 ```
 
 ```bash
