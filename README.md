@@ -14,6 +14,7 @@ user.email settings so you can commit as more than one author.
 * Keep pairs per repository
 * Import pairs between repositories
 * Pairing made easy(-ier)
+* Guess the base email from the paired users' email addresses
 
 # Synopsis
 ```bash
