@@ -34,7 +34,7 @@ module Git
       def base_email
         wrapper.config("git-duo.email").first ||
           guess_base_email_from_authors ||
-          raise(Git::Duo::EmailNotImplemented)
+          raise(Git::Duo::EmailNotImplementedError)
       end
 
       def guess_base_email_from_authors

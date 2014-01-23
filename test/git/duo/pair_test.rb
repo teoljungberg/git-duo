@@ -45,7 +45,7 @@ module Git::Duo
       wrapper.expects(:config).with("git-duo.email").
         returns([]).at_least_once
 
-      assert_raises Git::Duo::EmailNotImplemented do
+      assert_raises Git::Duo::EmailNotImplementedError do
         Pair.new(bruce_and_edward, wrapper: wrapper).email
       end
     end
