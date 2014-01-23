@@ -22,8 +22,8 @@ module Git
           map {|a| Git::Duo::Author.import(a) }
       end
 
-      def authors=(new_authors)
-        @authors = new_authors
+      def authors= *new_authors
+        @authors = *new_authors
       end
 
       def committer
@@ -61,7 +61,8 @@ module Git
       end
 
       def save_authors
-        authors.each do |author|
+        authors.flatten.
+          each do |author|
           wrapper.config "git-duo.#{author.key} '#{author}'"
         end
       end

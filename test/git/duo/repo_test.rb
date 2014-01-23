@@ -24,13 +24,22 @@ module Git::Duo
       assert_instance_of Author, repo.authors.sample
     end
 
-    def test_importing_authors
+    def test_equals_equals_imports_authors
       wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
       wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
       wrapper.expects(:config).with("git-duo.jim 'Jim Gordon <jim@gotham.travel>'")
       wrapper.expects(:config).with("git-duo.harvey 'Harvey Dent <harvey@gotham.travel>'")
 
       repo.authors = jim_and_harvey
+      repo.save
+    end
+
+    def test_authors_equals_supports_one_author
+      wrapper.expects(:config).with('--get-regexp git-duo').returns(git_config).at_least_once
+      wrapper.expects(:config).with("git-duo.email 'board+%names@gotham.travel'")
+      wrapper.expects(:config).with("git-duo.bruce 'Bruce Wayne <bruce@gotham.travel>'")
+
+      repo.authors = Git::Duo::Author.import('bruce Bruce Wayne <bruce@gotham.travel>')
       repo.save
     end
 
