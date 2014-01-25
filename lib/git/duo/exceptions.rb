@@ -1,5 +1,5 @@
 module Git
   module Duo
-    class EmailNotImplementedError < StandardError; end
+    EmailNotImplementedError = Class.new StandardError
   end
 end
