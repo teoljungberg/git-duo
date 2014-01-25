@@ -61,10 +61,9 @@ module Git
       end
 
       def save_authors
-        authors.flatten.
-          each do |author|
-          wrapper.config "git-duo.#{author.key} '#{author}'"
-        end
+        authors.
+          flatten.
+          each {|author| wrapper.config "git-duo.#{author.key} '#{author}'" }
       end
 
       def save_email

@@ -11,9 +11,9 @@ module Git
         result = []
         result += opts.
           select {|k, _| authors.sample.respond_to? k }.
-          map do |k, v|
+          map {|k, v|
             authors.select {|o| o.send(k) =~ /#{v}/i }
-          end.flatten
+          }.flatten
       rescue NoMethodError
         result
       end

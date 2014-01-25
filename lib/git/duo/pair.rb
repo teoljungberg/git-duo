@@ -38,9 +38,9 @@ module Git
       end
 
       def guess_base_email_from_authors
-        domains = authors.map do |author|
+        domains = authors.map {|author|
           author.email.split(?@).last
-        end.uniq
+        }.uniq
 
         "dev+%names@#{domains.first}" if domains.size == 1
       end
