@@ -16,7 +16,11 @@ module Git
       end
 
       def email
-        base_email.gsub "%names", authors.map(&:key).join(?+)
+        if authors.size > 1
+          base_email.gsub "%names", authors.map(&:key).join(?+)
+        else
+          authors.first.email
+        end
       end
 
       def to_s

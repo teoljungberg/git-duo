@@ -38,6 +38,11 @@ Alfred Pennyworth + Bruce Wayne + Jim Gordon <dev+alfred+bruce+jim@gotham.travel
 ```
 
 ```bash
+$ git duo alfred
+Alfred Pennyworth <alfred@gotham.travel>
+```
+
+```bash
 $ git duo --list
 Bruce Wayne <bruce@gotham.travel>
 Alfred Pennyworth <alfred@gotham.travel>

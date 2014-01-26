@@ -20,6 +20,17 @@ module Git::Duo
       assert_equal expected_email, pair.email
     end
 
+    def test_pair_supports_one_single_author
+      author = alfred_and_bruce.first
+      pair = Pair.new [author], wrapper: wrapper
+
+      expected_name = "Alfred Pennyworth"
+      expected_email = "alfred@gotham.travel"
+
+      assert_equal expected_name, pair.name
+      assert_equal expected_email, pair.email
+    end
+
     def test_name
       expected = 'Alfred Pennyworth + Bruce Wayne'
       assert_equal expected, pair.name
