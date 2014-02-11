@@ -1,7 +1,5 @@
 require 'minitest/autorun'
 require "mocha/setup"
-
-$:<< File.dirname(__FILE__) + "/../lib"
 require 'git/duo'
 
 def alfred_and_bruce
