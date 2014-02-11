@@ -8,7 +8,7 @@ module Git
         parser = OptionParser.new do |opts|
           puts current_repo.committer if ARGV.empty?
 
-          opts.on '--add AUTHOR', 'Add an author. Format: "Key Author Name <author@example.com>"' do |string|
+          opts.on '--add AUTHOR', 'Add an author. Format: "key Firstname Lastname <author@example.com>"' do |string|
             current_repo.authors = Author.import string
           end
 
