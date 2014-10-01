@@ -39,6 +39,13 @@ module Git::Duo
       assert_predicate author, :valid?
     end
 
+    def test_import_without_key
+      author = Author.import("Bruce Wayne <bruce@gotham.travel>")
+
+      assert_predicate author, :valid?
+      assert_equal "bruce", author.key
+    end
+
     def test_to_s
       expected = "Alfred Pennyworth <alfred@gotham.travel>"
 
