@@ -17,26 +17,38 @@ module Git::Duo
 
     def test_author_requires_name
       author = Author.new author_options.merge(name: nil)
-      refute author.valid?
+
+      refute_predicate author, :valid?
     end
 
     def test_author_requires_email
       author = Author.new author_options.merge(email: nil)
-      refute author.valid?
+
+      refute_predicate author, :valid?
     end
 
     def test_author_requires_key
       author = Author.new author_options.merge(key: nil)
-      refute author.valid?
+
+      refute_predicate author, :valid?
     end
 
     def test_import
       author = Author.import("bruce Bruce Wayne <bruce@gotham.travel>")
-      assert author.valid?
+
+      assert_predicate author, :valid?
+    end
+
+    def test_import_without_key
+      author = Author.import("Bruce Wayne <bruce@gotham.travel>")
+
+      assert_predicate author, :valid?
+      assert_equal "bruce", author.key
     end
 
     def test_to_s
       expected = "Alfred Pennyworth <alfred@gotham.travel>"
+
       assert_equal expected, author.to_s
     end
   end
