@@ -39,7 +39,7 @@ module Git
             author = AuthorCollection.new(current_repo.authors).
               where(key: key).first
             abort "`#{key}` can't be found, see -h on how to add new authors" unless author
-            Author.new(key: key, name: author.name, email: author.email)
+            Author.new(key: author.key, name: author.name, email: author.email)
           end
           pair = Pair.new authors
           pair.save
