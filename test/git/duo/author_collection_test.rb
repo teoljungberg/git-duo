@@ -8,20 +8,24 @@ module Git::Duo
     end
     attr_reader :collection
 
-    def test_where_with_existing_keys
+    def test_where
+      refute_predicate collection.where(key: 'alfred'), :empty?
       assert_instance_of Author, collection.where(key: 'alfred').first
     end
 
-    def test_where_with_nonexisting_keys_returns_empty_array
+    def test_where_partial_match
+      search = collection.where(key: 'alf')
+      result = search.first
+
+      refute_predicate search, :empty?
+      assert_equal "Alfred Pennyworth", result.name
+    end
+
+    def test_where_with_nonexisting_keys
       assert_empty collection.where(omg: 0)
     end
 
-    def test_where_returns_the_result_of_the_valid_query
-      refute_empty collection.where(key: 'alfred', omg: 0)
-      refute_empty collection.where(omg: 0, key: 'alfred')
-    end
-
-    def test_where_returns_empty_array_with_an_empty_search
+    def test_where_with_no_given_query
       assert_empty collection.where
     end
   end
