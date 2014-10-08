@@ -13,22 +13,17 @@ module Git::Duo
         returns(["board+%names@gotham.travel"]).at_least_once
 
       pair = Pair.new alfred_and_bruce_rachel, wrapper: wrapper
-      expected_name = "Alfred Pennyworth + Bruce Wayne + Rachel Dawes"
-      expected_email = "board+alfred+bruce+rachel@gotham.travel"
 
-      assert_equal expected_name, pair.name
-      assert_equal expected_email, pair.email
+      assert_equal "Alfred Pennyworth + Bruce Wayne + Rachel Dawes", pair.name
+      assert_equal "board+alfred+bruce+rachel@gotham.travel", pair.email
     end
 
     def test_pair_supports_one_single_author
       author = alfred_and_bruce.first
       pair = Pair.new [author], wrapper: wrapper
 
-      expected_name = "Alfred Pennyworth"
-      expected_email = "alfred@gotham.travel"
-
-      assert_equal expected_name, pair.name
-      assert_equal expected_email, pair.email
+      assert_equal "Alfred Pennyworth", pair.name
+      assert_equal "alfred@gotham.travel", pair.email
     end
 
     def test_name
@@ -40,16 +35,14 @@ module Git::Duo
       wrapper.expects(:config).with("git-duo.email").
         returns(["board+%names@gotham.travel"]).at_least_once
 
-      expected = 'board+alfred+bruce@gotham.travel'
-      assert_equal expected, pair.email
+      assert_equal "board+alfred+bruce@gotham.travel", pair.email
     end
 
     def test_email_guesses_the_email_domain_from_authors
       wrapper.expects(:config).with("git-duo.email").
         returns([]).at_least_once
 
-      expected = "dev+alfred+bruce@gotham.travel"
-      assert_equal expected, pair.email
+      assert_equal "dev+alfred+bruce@gotham.travel", pair.email
     end
 
     def test_email_raises_error_if_domain_could_not_be_guessed
@@ -65,8 +58,10 @@ module Git::Duo
       wrapper.expects(:config).with("git-duo.email").
         returns(["board+%names@gotham.travel"]).at_least_once
 
-      expected = 'Alfred Pennyworth + Bruce Wayne <board+alfred+bruce@gotham.travel>'
-      assert_equal expected, pair.to_s
+      name = "Alfred Pennyworth + Bruce Wayne"
+      email = "<board+alfred+bruce@gotham.travel>"
+
+      assert_equal "#{name} #{email}", pair.to_s
     end
 
     def test_inspect_is_to_s
