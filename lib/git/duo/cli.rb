@@ -8,19 +8,19 @@ module Git
         parser = OptionParser.new do |opts|
           puts current_repo.committer if ARGV.empty?
 
-          opts.on '--add AUTHOR', 'Add an author. Format: "key Firstname Lastname <author@example.com>"' do |string|
+          opts.on '--add AUTHOR', '-a AUTHOR', 'Add an author. Format: "key Firstname Lastname <author@example.com>"' do |string|
             current_repo.authors = Author.import string
           end
 
-          opts.on '--list', 'Lists the authors in the repository' do
+          opts.on '--list', '-l',  'Lists the authors in the repository' do
             puts current_repo.authors
           end
 
-          opts.on '--email EMAIL', 'Set email format. Format: dev@example.com' do |email|
+          opts.on '--email EMAIL', '-e EMAIL', 'Set email format. Format: dev@example.com' do |email|
             current_repo.email = email
           end
 
-          opts.on '--import=PATH/TO/REPO', 'Import pairs from another repo' do |path|
+          opts.on '--import=PATH/TO/REPO', '-i PATH/TO/REPO', 'Import pairs from another repo' do |path|
             import_repo = Repo.new path
             current_repo.email = import_repo.email
             current_repo.authors = import_repo.authors
