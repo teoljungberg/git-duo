@@ -21,6 +21,16 @@ module Git::Duo
       assert_equal "Alfred Pennyworth", result.name
     end
 
+    def test_where_partial_matches_closest
+      collection = AuthorCollection.new alexander_and_al
+
+      search = collection.where(key: 'al')
+      result = search.first
+
+      refute_predicate search, :empty?
+      assert_equal "Alfred Pennyworth", result.name
+    end
+
     def test_where_with_nonexisting_keys
       assert_empty collection.where(omg: 0)
     end

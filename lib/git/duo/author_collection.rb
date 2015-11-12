@@ -12,7 +12,9 @@ module Git
         result += opts.
           select {|k, _| authors.sample.respond_to? k }.
           map {|k, v|
-            authors.select {|o| o.send(k) =~ /#{v}/i }
+            authors.
+              sort_by(&:key).
+              select {|o| o.send(k) =~ /#{v}/i }
           }.flatten
       rescue NoMethodError
         result

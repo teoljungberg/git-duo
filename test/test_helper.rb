@@ -27,6 +27,13 @@ def jim_and_harvey
   ]
 end
 
+def alexander_and_al
+  [
+    Git::Duo::Author.import('alexander Alexander Knox <alexander@gotham.travel>'),
+    Git::Duo::Author.import('al Alfred Pennyworth <alfred@gotham.travel>')
+  ]
+end
+
 class DummyWrapper < Struct.new(:directory)
   def config(*)
     git_config
