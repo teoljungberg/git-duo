@@ -5,7 +5,7 @@ module Git
   module Duo
     class Repo
       def self.current
-        new Dir.pwd
+        new Wrapper.top_level
       end
 
       attr_reader :directory, :wrapper

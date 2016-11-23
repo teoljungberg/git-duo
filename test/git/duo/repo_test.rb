@@ -9,10 +9,13 @@ module Git::Duo
     attr_reader :repo, :wrapper
 
     def test_current_inits_repo_with_current_dir
-      repo = Repo.current
       expected = Dir.pwd
 
-      assert_equal expected, repo.directory
+      Dir.chdir('test') do
+        repo = Repo.current
+
+        assert_equal expected, repo.directory
+      end
     end
 
     def test_initialize_expands_directory_path

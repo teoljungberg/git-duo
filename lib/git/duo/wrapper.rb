@@ -3,6 +3,12 @@ module Git
     class Wrapper
       PIPE_STDOUT_TO_STDERR = '2>&1'
 
+      def self.top_level
+        directory = `git rev-parse --show-toplevel`.strip
+        raise NotAGitRepository unless $?.exitstatus.zero?
+        directory
+      end
+
       def initialize(directory)
         @directory = directory
       end

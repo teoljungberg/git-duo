@@ -51,6 +51,8 @@ module Git
         abort "missing required argument\n\n #{parser.help}"
       rescue Git::Duo::EmailNotImplementedError
         abort "`Email format isn't set, see -h on how to set the email format"
+      rescue Git::Duo::NotAGitRepository
+        exit 1
       end
 
       private
