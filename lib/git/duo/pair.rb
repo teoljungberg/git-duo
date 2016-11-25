@@ -8,7 +8,9 @@ module Git
 
       def initialize authors, opts = {}
         @authors = authors.sort_by {|author| author.key }
-        @wrapper = opts.fetch(:wrapper) { Git::Duo::Wrapper.new File.join(Dir.pwd, '.git') }
+        @wrapper = opts.fetch(:wrapper) {
+          Git::Duo::Wrapper.new(Git::Duo::Wrapper.top_level + '/.git')
+        }
       end
 
       def name

@@ -4,7 +4,7 @@ module Git
       PIPE_STDOUT_TO_STDERR = '2>&1'
 
       def self.top_level
-        directory = `git rev-parse --show-toplevel`.strip
+        directory = `git rev-parse --show-toplevel #{PIPE_STDOUT_TO_STDERR}`.strip
         raise NotAGitRepository unless $?.exitstatus.zero?
         directory
       end
